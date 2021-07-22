@@ -22,6 +22,7 @@ export const ContextProvider = (props) => {
       return {
         key: question.key,
         value: "x",
+        principle: "",
       };
     }),
     sectionB: "",

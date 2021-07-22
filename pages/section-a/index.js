@@ -1,4 +1,5 @@
 import {
+  CircularProgress,
   FormControl,
   FormControlLabel,
   Grid,
@@ -88,53 +89,35 @@ export const questions = [
 
   {
     key: "13",
-    principle: "reciprocity",
-    question:
-      "When a family member does me a favor, I am very inclined to return this favor.",
-  },
-  {
-    key: "14",
-    principle: "reciprocity",
-    question: "I always pay back a favor.",
-  },
-  {
-    key: "15",
-    principle: "reciprocity",
-    question:
-      "If someone does something for me, I try to do something of similar value to repay the favor.",
-  },
-
-  {
-    key: "16",
     principle: "concensus",
     question:
       "If someone from my social network notifies me about a good book, I tend to read it.",
   },
   {
-    key: "17",
+    key: "14",
     principle: "concensus",
     question:
       "When I am in a new situation I look at others to see what I should do.",
   },
   {
-    key: "18",
+    key: "15",
     principle: "concensus",
     question:
       "I will do something as long as I know there are others doing it too.",
   },
 
   {
-    key: "19",
+    key: "16",
     principle: "liking",
     question: "I accept advice from my social network.",
   },
   {
-    key: "20",
+    key: "17",
     principle: "liking",
     question: "When I like someone, I am more inclined to believe him or her.",
   },
   {
-    key: "21",
+    key: "18",
     principle: "liking",
     question: "I will do a favor for people that I like.",
   },
@@ -146,6 +129,7 @@ const SectionA = (props) => {
   const router = useRouter();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const [validated, setValidated] = useState(false);
 
   useEffect(() => {
     if (context.questions.sectionA) {
@@ -170,17 +154,19 @@ const SectionA = (props) => {
     router.back();
   };
 
-  console.log(context);
+  // console.log(context);
 
   const handleChange = (e) => {
-    let indexToUpdate = context.responses.sectionA.findIndex((response) => {
-      return response.key === e.target.name;
-    });
+    let indexToUpdate = context.responses.sectionA.findIndex(
+      (response) => response.key === e.target.name
+    );
     context.setResponses((prev) => {
       const newResponses = prev.sectionA;
+      let principle = questions.find((item) => item.key === e.target.name);
       newResponses[indexToUpdate] = {
         key: e.target.name,
         value: e.target.value,
+        principle: principle.principle,
       };
       return {
         ...prev,
@@ -188,11 +174,28 @@ const SectionA = (props) => {
       };
     });
   };
+
+  const validate = () => {
+    let control = false;
+    context.responses.sectionA.every((item) => {
+      if (!item.principle) {
+        control = false;
+        return false;
+      }
+      control = true;
+      return true;
+    });
+    if (control) {
+      setValidated(control);
+    }
+  };
+  if (!validated) validate();
+
   return (
     <>
       <Grid container spacing={7}>
         <Grid item>
-          <Typography variant="h2">Section A.</Typography>
+          <Typography variant="h2">Section A</Typography>
         </Grid>
         <Grid container direction="column" spacing={3}>
           {shuffledQuestions.map((question) => {
@@ -217,31 +220,31 @@ const SectionA = (props) => {
                         alignContent={matches ? "center" : "flex-start"}
                       >
                         <FormControlLabel
-                          value="Strongly Disagree"
+                          value="1"
                           control={<Radio />}
                           label="Strongly Disagree"
                           labelPlacement={matches ? "bottom" : "end"}
                         />
                         <FormControlLabel
-                          value="Disagree"
+                          value="2"
                           control={<Radio />}
                           label="Disagree"
                           labelPlacement={matches ? "bottom" : "end"}
                         />
                         <FormControlLabel
-                          value="Not Sure"
+                          value="3"
                           control={<Radio />}
                           label="Not Sure"
                           labelPlacement={matches ? "bottom" : "end"}
                         />
                         <FormControlLabel
-                          value="Agree"
+                          value="4"
                           control={<Radio />}
                           label="Agree"
                           labelPlacement={matches ? "bottom" : "end"}
                         />
                         <FormControlLabel
-                          value="Strongly Agree"
+                          value="5"
                           control={<Radio />}
                           label="Strongly Agree"
                           labelPlacement={matches ? "bottom" : "end"}
@@ -258,7 +261,7 @@ const SectionA = (props) => {
       <div style={{ padding: "3rem" }}></div>
       <Navigation
         showBack={true}
-        showNext={true}
+        showNext={validated}
         nextHandler={nextHandler}
         backHandler={backHandler}
       />
