@@ -197,13 +197,13 @@ const SectionA = (props) => {
         <Grid item>
           <Typography variant="h2">Section A</Typography>
         </Grid>
-        <Grid container direction="column" spacing={3}>
+        <Grid container direction="column" spacing={3} alignContent="center">
           {shuffledQuestions.map((question) => {
             let current = context.responses.sectionA.find((item) => {
               return item.key === question.key;
             });
             return (
-              <Grid item key={question.key}>
+              <Grid md={8} lg={10} item key={question.key}>
                 <Paper className={classes.questions}>
                   <Typography variant="h5">{question.question}</Typography>
                   <FormControl component="fieldset" fullWidth={true}>
