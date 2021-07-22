@@ -192,7 +192,7 @@ const SectionA = (props) => {
     <>
       <Grid container spacing={7}>
         <Grid item>
-          <Typography variant="h2">Section A</Typography>
+          <Typography variant="h2">Section A.</Typography>
         </Grid>
         <Grid container direction="column" spacing={3}>
           {shuffledQuestions.map((question) => {
