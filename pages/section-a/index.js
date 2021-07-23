@@ -1,5 +1,4 @@
 import {
-  CircularProgress,
   FormControl,
   FormControlLabel,
   Grid,
@@ -15,6 +14,7 @@ import { useContext, useEffect, useState } from "react";
 import Navigation from "../../components/Navigation";
 import Context from "../../store";
 import classes from "./index.module.css";
+import Head from "next/head";
 
 export const questions = [
   {
@@ -130,8 +130,15 @@ const SectionA = (props) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
   const [validated, setValidated] = useState(false);
+  const [showPage, setShowPage] = useState(false);
 
   useEffect(() => {
+    // redirect if no access
+    if (!context.access.sectionA) {
+      router.replace("/");
+      return;
+    }
+    setShowPage(true);
     if (context.questions.sectionA) {
       setShuffledQuestions(context.questions.sectionA);
     } else {
@@ -147,6 +154,12 @@ const SectionA = (props) => {
   }, []);
 
   const nextHandler = () => {
+    context.setAccess((prev) => {
+      return {
+        ...prev,
+        summary: true,
+      };
+    });
     router.push("/summary");
   };
 
@@ -193,78 +206,89 @@ const SectionA = (props) => {
 
   return (
     <>
-      <Grid container spacing={7}>
-        <Grid item>
-          <Typography variant="h2">Section A</Typography>
-        </Grid>
-        <Grid container direction="column" spacing={3} alignContent="center">
-          {shuffledQuestions.map((question) => {
-            let current = context.responses.sectionA.find((item) => {
-              return item.key === question.key;
-            });
-            return (
-              <Grid md={8} lg={10} item key={question.key}>
-                <Paper className={classes.questions}>
-                  <Typography variant="h5">{question.question}</Typography>
-                  <FormControl component="fieldset" fullWidth={true}>
-                    <RadioGroup
-                      aria-label={question.key}
-                      name={question.key}
-                      value={current.value}
-                      onChange={handleChange}
-                    >
-                      <Grid
-                        container
-                        className={classes.questionsRadios}
-                        direction={!matches ? "column" : "row"}
-                        alignContent={matches ? "center" : "flex-start"}
-                      >
-                        <FormControlLabel
-                          value="1"
-                          control={<Radio />}
-                          label="Strongly Disagree"
-                          labelPlacement={matches ? "bottom" : "end"}
-                        />
-                        <FormControlLabel
-                          value="2"
-                          control={<Radio />}
-                          label="Disagree"
-                          labelPlacement={matches ? "bottom" : "end"}
-                        />
-                        <FormControlLabel
-                          value="3"
-                          control={<Radio />}
-                          label="Not Sure"
-                          labelPlacement={matches ? "bottom" : "end"}
-                        />
-                        <FormControlLabel
-                          value="4"
-                          control={<Radio />}
-                          label="Agree"
-                          labelPlacement={matches ? "bottom" : "end"}
-                        />
-                        <FormControlLabel
-                          value="5"
-                          control={<Radio />}
-                          label="Strongly Agree"
-                          labelPlacement={matches ? "bottom" : "end"}
-                        />
-                      </Grid>
-                    </RadioGroup>
-                  </FormControl>
-                </Paper>
+      <Head>
+        <title>Section A</title>
+      </Head>
+      {showPage && (
+        <>
+          <Grid item lg={9}>
+            <Grid container spacing={7}>
+              <Grid item>
+                <Typography variant="h2">Section A</Typography>
               </Grid>
-            );
-          })}
-        </Grid>
-      </Grid>
-      <div style={{ padding: "3rem" }}></div>
-      <Navigation
-        showBack={true}
-        showNext={validated}
-        nextHandler={nextHandler}
-        backHandler={backHandler}
-      />
+              <Grid container direction="column" spacing={3}>
+                {shuffledQuestions.map((question) => {
+                  let current = context.responses.sectionA.find((item) => {
+                    return item.key === question.key;
+                  });
+                  return (
+                    <Grid item key={question.key}>
+                      <Paper elevation={5} className={classes.questions}>
+                        <Typography variant="h5">
+                          {question.question}
+                        </Typography>
+                        <FormControl component="fieldset" fullWidth={true}>
+                          <RadioGroup
+                            aria-label={question.key}
+                            name={question.key}
+                            value={current.value}
+                            onChange={handleChange}
+                          >
+                            <Grid
+                              container
+                              className={classes.questionsRadios}
+                              direction={!matches ? "column" : "row"}
+                              alignContent={matches ? "center" : "flex-start"}
+                            >
+                              <FormControlLabel
+                                value="1"
+                                control={<Radio />}
+                                label="Strongly Disagree"
+                                labelPlacement={matches ? "bottom" : "end"}
+                              />
+                              <FormControlLabel
+                                value="2"
+                                control={<Radio />}
+                                label="Disagree"
+                                labelPlacement={matches ? "bottom" : "end"}
+                              />
+                              <FormControlLabel
+                                value="3"
+                                control={<Radio />}
+                                label="Not Sure"
+                                labelPlacement={matches ? "bottom" : "end"}
+                              />
+                              <FormControlLabel
+                                value="4"
+                                control={<Radio />}
+                                label="Agree"
+                                labelPlacement={matches ? "bottom" : "end"}
+                              />
+                              <FormControlLabel
+                                value="5"
+                                control={<Radio />}
+                                label="Strongly Agree"
+                                labelPlacement={matches ? "bottom" : "end"}
+                              />
+                            </Grid>
+                          </RadioGroup>
+                        </FormControl>
+                      </Paper>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </Grid>
+            <div style={{ padding: "3rem" }}></div>
+          </Grid>
+          <Navigation
+            showBack={true}
+            showNext={validated}
+            nextHandler={nextHandler}
+            backHandler={backHandler}
+          />
+        </>
+      )}
     </>
   );
 };

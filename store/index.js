@@ -12,10 +12,25 @@ const Context = React.createContext({
     sectionA: [],
   },
   setQuestions: () => {},
+  access: {
+    sectionA: false,
+    summary: false,
+    sectionB: false,
+    sectionC: false,
+    end: false,
+  },
+  setAccess: () => {},
 });
 
 export const ContextProvider = (props) => {
   // states here
+  const [access, setAccess] = useState({
+    sectionA: false,
+    summary: false,
+    sectionB: true,
+    sectionC: true,
+    end: true,
+  });
   const [questions, setQuestions] = useState({});
   const [responses, setResponses] = useState({
     sectionA: sectionAQuestions.map((question) => {
@@ -38,6 +53,8 @@ export const ContextProvider = (props) => {
         setResponses: setResponses,
         questions: questions,
         setQuestions: setQuestions,
+        access: access,
+        setAccess: setAccess,
       }}
     >
       {props.children}

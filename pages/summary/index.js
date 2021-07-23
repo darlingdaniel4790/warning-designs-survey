@@ -1,14 +1,17 @@
-import { Card, Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import Navigation from "../../components/Navigation";
 import Context from "../../store";
+import Head from "next/head";
 
 const Summary = () => {
   const router = useRouter();
   const context = useContext(Context);
   const [responses, setResponses] = useState();
   const [chosenMessage, setChosenMessage] = useState("");
+  const [showPage, setShowPage] = useState(false);
+
   // 1,2,3 - reciprocity
   const reciprocity = [1, 2, 3];
 
@@ -37,6 +40,13 @@ const Summary = () => {
   };
 
   useEffect(() => {
+    // redirect if no access
+    if (!context.access.summary) {
+      router.replace("/section-a");
+      return;
+    }
+    setShowPage(true);
+
     context.responses.sectionA.map((item) => {
       if (reciprocity.includes(parseInt(item.key))) {
         summary.reciprocity.push(item.value);
@@ -133,6 +143,12 @@ const Summary = () => {
   }, []);
 
   const nextHandler = () => {
+    context.setAccess((prev) => {
+      return {
+        ...prev,
+        sectionB: true,
+      };
+    });
     router.push("/section-b");
   };
 
@@ -189,20 +205,29 @@ const Summary = () => {
 
   return (
     <>
-      <Grid container direction="column">
-        <Typography variant="h2">Section A Summary</Typography>
-        {output}
-        <Typography variant="h4">
-          <br />
-          {chosenMessage}
-        </Typography>
-      </Grid>
-      <Navigation
-        showBack={true}
-        showNext={true}
-        nextHandler={nextHandler}
-        backHandler={backHandler}
-      />
+      <Head>
+        <title>Section A - Summary</title>
+      </Head>
+      {showPage && (
+        <>
+          <Grid item lg={9}>
+            <Grid container direction="column">
+              <Typography variant="h2">Section A Summary</Typography>
+              {output}
+              <Typography variant="h4">
+                <br />
+                {chosenMessage}
+              </Typography>
+            </Grid>
+          </Grid>
+          <Navigation
+            showBack={true}
+            showNext={true}
+            nextHandler={nextHandler}
+            backHandler={backHandler}
+          />
+        </>
+      )}
     </>
   );
 };

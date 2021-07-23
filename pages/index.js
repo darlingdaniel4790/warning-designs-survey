@@ -2,11 +2,20 @@ import Head from "next/head";
 import { Grid, Typography } from "@material-ui/core";
 import Navigation from "../components/Navigation";
 import { useRouter } from "next/router";
+import Context from "../store";
+import { useContext } from "react";
 
 export default function Home() {
   const router = useRouter();
+  const context = useContext(Context);
 
   const nextHandler = () => {
+    context.setAccess((prev) => {
+      return {
+        ...prev,
+        sectionA: true,
+      };
+    });
     router.push("/section-a");
   };
 
