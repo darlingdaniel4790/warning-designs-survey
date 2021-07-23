@@ -6,8 +6,6 @@ import {
   Radio,
   RadioGroup,
   Typography,
-  useMediaQuery,
-  useTheme,
 } from "@material-ui/core";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
@@ -65,8 +63,7 @@ const SectionC = () => {
   const router = useRouter();
   const [showPage, setShowPage] = useState(false);
   const context = useContext(Context);
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const [validated, setValidated] = useState(false);
 
   useEffect(() => {
     // redirect if no access
@@ -92,6 +89,40 @@ const SectionC = () => {
   const backHandler = () => {
     router.back();
   };
+
+  const handleChange = (e) => {
+    let indexToUpdate = context.responses.sectionC.findIndex(
+      (response) => response.key === e.target.name
+    );
+    context.setResponses((prev) => {
+      const newResponses = prev.sectionC;
+      newResponses[indexToUpdate] = {
+        key: e.target.name,
+        value: e.target.value,
+      };
+      return {
+        ...prev,
+        sectionC: newResponses,
+      };
+    });
+  };
+
+  const validate = () => {
+    let control = false;
+    context.responses.sectionC.every((item) => {
+      if (item.value === "x") {
+        control = false;
+        return false;
+      }
+      control = true;
+      return true;
+    });
+    if (control) {
+      setValidated(control);
+    }
+  };
+  if (!validated) validate();
+
   return (
     <>
       <Head>
@@ -106,9 +137,9 @@ const SectionC = () => {
               </Grid>
               <Grid container direction="column" spacing={3}>
                 {questions.map((question) => {
-                  // let current = context.responses.sectionA.find((item) => {
-                  //   return item.key === question.key;
-                  // });
+                  let current = context.responses.sectionC.find((item) => {
+                    return item.key === question.key;
+                  });
                   return (
                     <Grid item key={question.key}>
                       <Paper elevation={5} className={classes.questions}>
@@ -119,20 +150,20 @@ const SectionC = () => {
                           <RadioGroup
                             aria-label={question.key}
                             name={question.key}
-                            // value={current.value}
-                            // onChange={handleChange}
+                            value={current.value}
+                            onChange={handleChange}
                           >
                             <Grid
                               container
                               direction="column"
                               alignContent="flex-start"
                             >
-                              {question.options.map((option) => (
+                              {question.options.map((option, index) => (
                                 <FormControlLabel
                                   value={option}
                                   control={<Radio />}
                                   label={option}
-                                  // labelPlacement={matches ? "bottom" : "end"}
+                                  key={index}
                                 />
                               ))}
                             </Grid>
@@ -148,7 +179,7 @@ const SectionC = () => {
           </Grid>
           <Navigation
             showBack={true}
-            showNext={true}
+            showNext={validated}
             nextHandler={nextHandler}
             backHandler={backHandler}
           />

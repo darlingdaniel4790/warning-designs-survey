@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { questions as sectionAQuestions } from "../pages/section-a";
+import { questions as sectionCQuestions } from "../pages/section-c";
 
 const Context = React.createContext({
   responses: {
@@ -41,7 +42,12 @@ export const ContextProvider = (props) => {
       };
     }),
     sectionB: "",
-    sectionC: "",
+    sectionC: sectionCQuestions.map((question) => {
+      return {
+        key: question.key,
+        value: "x",
+      };
+    }),
   });
 
   // functions here
