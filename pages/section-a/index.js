@@ -164,7 +164,7 @@ const SectionA = (props) => {
   };
 
   const backHandler = () => {
-    router.back();
+    router.push("/");
   };
 
   // console.log(context);
@@ -213,7 +213,7 @@ const SectionA = (props) => {
         <>
           <Grid item lg={9}>
             <Grid container>
-              <Typography variant="h2" gutterBottom="true">
+              <Typography variant="h2" gutterBottom={true}>
                 Section A
               </Typography>
               <Grid container direction="column" spacing={3}>

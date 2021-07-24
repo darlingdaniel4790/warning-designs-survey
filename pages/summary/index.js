@@ -153,7 +153,7 @@ const Summary = () => {
   };
 
   const backHandler = () => {
-    router.back();
+    router.push("/section-a");
   };
 
   let output;

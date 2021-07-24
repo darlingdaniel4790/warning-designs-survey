@@ -87,7 +87,7 @@ const SectionC = () => {
   };
 
   const backHandler = () => {
-    router.back();
+    router.push("/section-b/?fromC=true");
   };
 
   const handleChange = (e) => {
@@ -132,7 +132,7 @@ const SectionC = () => {
         <>
           <Grid item lg={9}>
             <Grid container>
-              <Typography variant="h2" gutterBottom="true">
+              <Typography variant="h2" gutterBottom={true}>
                 Section C
               </Typography>
               <Grid container direction="column" spacing={3}>
