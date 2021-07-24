@@ -26,28 +26,29 @@ export default function Home() {
         <meta name="description" content="survey for research" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Grid container direction="column">
-        <Typography variant="h3">Welcome to this survey.</Typography>
-        <br />
-        <br />
-        <Typography variant="h5">
-          The survey contains Three sections, A, B and C. You are expected to
-          choose the best option that best suits you. Kindly answer the
-          questions to the best of your ability.
-        </Typography>
-        <br />
-        <br />
-        <br />
-        <Typography variant="h5">
-          This is not an examination.
+      <Grid item lg={9}>
+        <Grid container direction="column">
+          <Typography variant="h3">Welcome to this survey.</Typography>
           <br />
           <br />
-          The online survey should take you around [10 minutes].
+          <Typography variant="h5">
+            The survey contains Three sections, A, B and C. You are expected to
+            choose the best option that best suits you. Kindly answer the
+            questions to the best of your ability.
+          </Typography>
           <br />
           <br />
-          Your participation in this research is voluntary.
-        </Typography>
+          <br />
+          <Typography variant="h5">
+            This is not an examination.
+            <br />
+            <br />
+            The online survey should take you around [10 minutes].
+            <br />
+            <br />
+            Your participation in this research is voluntary.
+          </Typography>
+        </Grid>
       </Grid>
       <Navigation showBack={false} showNext={true} nextHandler={nextHandler} />
     </>

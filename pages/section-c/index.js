@@ -131,10 +131,10 @@ const SectionC = () => {
       {showPage && (
         <>
           <Grid item lg={9}>
-            <Grid container spacing={7}>
-              <Grid item>
-                <Typography variant="h2">Section C</Typography>
-              </Grid>
+            <Grid container>
+              <Typography variant="h2" gutterBottom="true">
+                Section C
+              </Typography>
               <Grid container direction="column" spacing={3}>
                 {questions.map((question) => {
                   let current = context.responses.sectionC.find((item) => {

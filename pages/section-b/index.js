@@ -42,9 +42,9 @@ const SectionB = () => {
       {showPage && (
         <>
           <Grid item lg={9}>
-            <Grid item>
-              <Typography variant="h2">Section B</Typography>
-            </Grid>
+            <Typography variant="h2" gutterBottom="true">
+              Section B
+            </Typography>
           </Grid>
           <Navigation
             showBack={true}

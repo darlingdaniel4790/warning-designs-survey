@@ -219,6 +219,7 @@ const Summary = () => {
                 {chosenMessage}
               </Typography>
             </Grid>
+            <div style={{ padding: "3rem" }}></div>
           </Grid>
           <Navigation
             showBack={true}

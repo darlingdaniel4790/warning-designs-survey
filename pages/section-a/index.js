@@ -212,10 +212,10 @@ const SectionA = (props) => {
       {showPage && (
         <>
           <Grid item lg={9}>
-            <Grid container spacing={7}>
-              <Grid item>
-                <Typography variant="h2">Section A</Typography>
-              </Grid>
+            <Grid container>
+              <Typography variant="h2" gutterBottom="true">
+                Section A
+              </Typography>
               <Grid container direction="column" spacing={3}>
                 {shuffledQuestions.map((question) => {
                   let current = context.responses.sectionA.find((item) => {
