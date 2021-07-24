@@ -28,9 +28,9 @@ export const ContextProvider = (props) => {
   const [access, setAccess] = useState({
     sectionA: false,
     summary: false,
-    sectionB: true,
-    sectionC: true,
-    end: true,
+    sectionB: false,
+    sectionC: false,
+    end: false,
   });
   const [questions, setQuestions] = useState({});
   const [responses, setResponses] = useState({
