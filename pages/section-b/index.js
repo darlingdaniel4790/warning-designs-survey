@@ -21,7 +21,29 @@ import classes from "../section-a/index.module.css";
 import Image from "next/image";
 import placeholder from "../../assets/placeholder.jpg";
 
-const stepsLength = 7;
+export const stepsLength = 7;
+export const step3Questions = [
+  {
+    key: "1",
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+  },
+  {
+    key: "2",
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+  },
+  {
+    key: "3",
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+  },
+  {
+    key: "4",
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+  },
+];
 
 const SectionB = (props) => {
   const router = useRouter();
@@ -36,6 +58,7 @@ const SectionB = (props) => {
   });
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const [validated, setValidated] = useState(activeStep);
 
   useEffect(() => {
     // redirect if no access
@@ -73,6 +96,7 @@ const SectionB = (props) => {
   };
 
   let questionShown = () => {
+    let handleChange, value;
     switch (activeStep) {
       case 1:
         return (
@@ -94,6 +118,22 @@ const SectionB = (props) => {
         );
         break;
       case 2:
+        handleChange = (e) => {
+          if (validated !== activeStep) {
+            setValidated(activeStep);
+          }
+          context.setResponses((prev) => {
+            const newResponses = prev.sectionB;
+            newResponses[0] = e.target.value;
+            return {
+              ...prev,
+              sectionB: newResponses,
+            };
+          });
+        };
+
+        value = context.responses.sectionB[0];
+
         return (
           <>
             <Grid container direction="column" spacing={3}>
@@ -108,12 +148,7 @@ const SectionB = (props) => {
                     Did you read the entire text of the message?
                   </Typography>
                   <FormControl component="fieldset" fullWidth={true}>
-                    <RadioGroup
-                    // aria-label={question.key}
-                    // name={question.key}
-                    // value={current.value}
-                    // onChange={handleChange}
-                    >
+                    <RadioGroup name="1" value={value} onChange={handleChange}>
                       <Grid
                         container
                         direction="column"
@@ -144,12 +179,32 @@ const SectionB = (props) => {
         );
         break;
       case 3:
-        let questions = [
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-        ];
+        let control = context.responses.sectionB[1].every((item) => {
+          if (item.value === "x") {
+            return false;
+          }
+          return true;
+        });
+        if (control && validated !== activeStep) {
+          setValidated(activeStep);
+        }
+        handleChange = (e) => {
+          let indexToUpdate = context.responses.sectionB[1].findIndex(
+            (response) => response.key === e.target.name
+          );
+          context.setResponses((prev) => {
+            const newResponses = prev.sectionB;
+            newResponses[1][indexToUpdate] = {
+              key: e.target.name,
+              value: e.target.value,
+            };
+            return {
+              ...prev,
+              sectionB: newResponses,
+            };
+          });
+        };
+
         return (
           <>
             <Grid container direction="column" spacing={3}>
@@ -171,20 +226,19 @@ const SectionB = (props) => {
                   </Typography>
                 </Paper>
               </Grid>
-              {questions.map((question, index) => {
-                // let current = context.responses.sectionA.find((item) => {
-                //   return item.key === question.key;
-                // });
+              {step3Questions.map((question) => {
+                let current = context.responses.sectionB[1].find((item) => {
+                  return item.key === question.key;
+                });
                 return (
-                  <Grid item key={index}>
+                  <Grid item key={question.key}>
                     <Paper elevation={5} className={classes.questions}>
-                      <Typography variant="h5">{question}</Typography>
+                      <Typography variant="h5">{question.question}</Typography>
                       <FormControl component="fieldset" fullWidth={true}>
                         <RadioGroup
-                          aria-label={index.toString()}
-                          name={index.toString()}
-                          // value={current.value}
-                          // onChange={handleChange}
+                          name={question.key}
+                          value={current.value}
+                          onChange={handleChange}
                         >
                           <Grid
                             container
@@ -234,6 +288,24 @@ const SectionB = (props) => {
         );
         break;
       case 4:
+        handleChange = (e) => {
+          if (e.target.value !== "" && validated !== activeStep) {
+            setValidated(activeStep);
+          } else if (validated === activeStep && e.target.value === "") {
+            setValidated(activeStep - 1);
+          }
+          context.setResponses((prev) => {
+            const newResponses = prev.sectionB;
+            newResponses[2] = e.target.value;
+            return {
+              ...prev,
+              sectionB: newResponses,
+            };
+          });
+        };
+
+        value = context.responses.sectionB[2];
+
         return (
           <>
             <Grid container direction="column" spacing={3}>
@@ -261,9 +333,8 @@ const SectionB = (props) => {
                       multiline
                       rows={10}
                       rowsMax={20}
-                      id="journal-entry"
-                      // value={response[0]}
-                      // onChange={handleChange}
+                      value={value}
+                      onChange={handleChange}
                       placeholder="Your response here."
                     />
                   </FormControl>
@@ -274,6 +345,24 @@ const SectionB = (props) => {
         );
         break;
       case 5:
+        handleChange = (e) => {
+          if (e.target.value !== "" && validated !== activeStep) {
+            setValidated(activeStep);
+          } else if (validated === activeStep && e.target.value === "") {
+            setValidated(activeStep - 1);
+          }
+          context.setResponses((prev) => {
+            const newResponses = prev.sectionB;
+            newResponses[3] = e.target.value;
+            return {
+              ...prev,
+              sectionB: newResponses,
+            };
+          });
+        };
+
+        value = context.responses.sectionB[3];
+
         return (
           <>
             <Grid container direction="column" spacing={3}>
@@ -297,16 +386,11 @@ const SectionB = (props) => {
                     against?
                   </Typography>
                   <FormControl fullWidth>
-                    <Select
-                      // value={age}
-                      // onChange={handleChange}
-                      displayEmpty
-                      // className={classes.selectEmpty}
-                      // inputProps={{ 'aria-label': 'Without label' }}
-                    >
+                    <Select value={value} onChange={handleChange} displayEmpty>
                       <MenuItem value="">
-                        <em>None</em>
+                        <em>Select One</em>
                       </MenuItem>
+                      <MenuItem value={0}>None</MenuItem>
                       <MenuItem value={1}>Option 1</MenuItem>
                       <MenuItem value={2}>Option 2</MenuItem>
                       <MenuItem value={3}>Option 3</MenuItem>
@@ -320,6 +404,24 @@ const SectionB = (props) => {
         );
         break;
       case 6:
+        handleChange = (e) => {
+          if (e.target.value !== "" && validated !== activeStep) {
+            setValidated(activeStep);
+          } else if (validated === activeStep && e.target.value === "") {
+            setValidated(activeStep - 1);
+          }
+          context.setResponses((prev) => {
+            const newResponses = prev.sectionB;
+            newResponses[4] = e.target.value;
+            return {
+              ...prev,
+              sectionB: newResponses,
+            };
+          });
+        };
+
+        value = context.responses.sectionB[4];
+
         return (
           <>
             <Grid container direction="column" spacing={3}>
@@ -342,16 +444,11 @@ const SectionB = (props) => {
                     What action, if any, did the popup message want you to take?
                   </Typography>
                   <FormControl fullWidth>
-                    <Select
-                      // value={age}
-                      // onChange={handleChange}
-                      displayEmpty
-                      // className={classes.selectEmpty}
-                      // inputProps={{ 'aria-label': 'Without label' }}
-                    >
+                    <Select value={value} onChange={handleChange} displayEmpty>
                       <MenuItem value="">
-                        <em>None</em>
+                        <em>Select One</em>
                       </MenuItem>
+                      <MenuItem value={0}>None</MenuItem>
                       <MenuItem value={1}>Option 1</MenuItem>
                       <MenuItem value={2}>Option 2</MenuItem>
                       <MenuItem value={3}>Option 3</MenuItem>
@@ -365,6 +462,24 @@ const SectionB = (props) => {
         );
         break;
       case 7:
+        handleChange = (e) => {
+          if (e.target.value !== "" && validated !== activeStep) {
+            setValidated(activeStep);
+          } else if (validated === activeStep && e.target.value === "") {
+            setValidated(activeStep - 1);
+          }
+          context.setResponses((prev) => {
+            const newResponses = prev.sectionB;
+            newResponses[5] = e.target.value;
+            return {
+              ...prev,
+              sectionB: newResponses,
+            };
+          });
+        };
+
+        value = context.responses.sectionB[5];
+
         return (
           <>
             <Grid container direction="column" spacing={3}>
@@ -392,9 +507,8 @@ const SectionB = (props) => {
                       multiline
                       rows={10}
                       rowsMax={20}
-                      id="journal-entry"
-                      // value={response[0]}
-                      // onChange={handleChange}
+                      value={value}
+                      onChange={handleChange}
                       placeholder="Your response here."
                     />
                   </FormControl>
@@ -417,7 +531,7 @@ const SectionB = (props) => {
       </Head>
       {showPage && (
         <>
-          <Grid item lg={9} style={{ width: "inherit" }}>
+          <Grid item lg={9} style={{ width: "100%" }}>
             <Typography variant="h2" gutterBottom={true}>
               Section B - {activeStep}
             </Typography>
@@ -426,7 +540,7 @@ const SectionB = (props) => {
           </Grid>
           <Navigation
             showBack={true}
-            showNext={true}
+            showNext={activeStep === 1 || validated >= activeStep}
             nextHandler={nextHandler}
             backHandler={backHandler}
           />

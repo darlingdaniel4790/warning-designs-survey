@@ -1,12 +1,36 @@
 import React, { useState } from "react";
 import { questions as sectionAQuestions } from "../pages/section-a";
+import { step3Questions } from "../pages/section-b";
 import { questions as sectionCQuestions } from "../pages/section-c";
 
 const Context = React.createContext({
   responses: {
-    sectionA: [],
-    sectionB: [],
-    sectionC: [],
+    sectionA: [
+      {
+        key: "",
+        value: "",
+        principle: "",
+      },
+    ],
+    sectionB: [
+      "",
+      [
+        {
+          key: "",
+          value: "",
+        },
+      ],
+      "",
+      "",
+      "",
+      "",
+    ],
+    sectionC: [
+      {
+        key: "",
+        value: "",
+      },
+    ],
   },
   setResponses: () => {},
   questions: {
@@ -41,7 +65,19 @@ export const ContextProvider = (props) => {
         principle: "",
       };
     }),
-    sectionB: "",
+    sectionB: [
+      "",
+      step3Questions.map((question) => {
+        return {
+          key: question.key,
+          value: "x",
+        };
+      }),
+      "",
+      "",
+      "",
+      "",
+    ],
     sectionC: sectionCQuestions.map((question) => {
       return {
         key: question.key,
