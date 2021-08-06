@@ -1,0 +1,41 @@
+{
+  "sectionA": [
+    { "key": "1", "value": "x", "principle": "" },
+    { "key": "2", "value": "x", "principle": "" },
+    { "key": "3", "value": "x", "principle": "" },
+    { "key": "4", "value": "x", "principle": "" },
+    { "key": "5", "value": "x", "principle": "" },
+    { "key": "6", "value": "x", "principle": "" },
+    { "key": "7", "value": "x", "principle": "" },
+    { "key": "8", "value": "x", "principle": "" },
+    { "key": "9", "value": "x", "principle": "" },
+    { "key": "10", "value": "x", "principle": "" },
+    { "key": "11", "value": "x", "principle": "" },
+    { "key": "12", "value": "x", "principle": "" },
+    { "key": "13", "value": "x", "principle": "" },
+    { "key": "14", "value": "x", "principle": "" },
+    { "key": "15", "value": "x", "principle": "" },
+    { "key": "16", "value": "x", "principle": "" },
+    { "key": "17", "value": "x", "principle": "" },
+    { "key": "18", "value": "x", "principle": "" }
+  ],
+  "sectionB": [
+    "",
+    [
+      { "key": "1", "value": "x" },
+      { "key": "2", "value": "x" },
+      { "key": "3", "value": "x" },
+      { "key": "4", "value": "x" }
+    ],
+    "",
+    "",
+    "",
+    ""
+  ],
+  "sectionC": [
+    { "key": "1", "value": "x" },
+    { "key": "2", "value": "x" },
+    { "key": "3", "value": "x" },
+    { "key": "4", "value": "x" }
+  ]
+}

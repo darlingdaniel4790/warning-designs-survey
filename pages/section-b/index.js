@@ -19,7 +19,9 @@ import { useContext, useEffect, useState } from "react";
 import Context from "../../store";
 import classes from "../section-a/index.module.css";
 import Image from "next/image";
-import placeholder from "../../assets/placeholder.jpg";
+import image1 from "../../assets/1.png";
+import image2 from "../../assets/2.png";
+import image3 from "../../assets/placeholder.jpg";
 
 export const stepsLength = 7;
 export const step3Questions = [
@@ -59,6 +61,17 @@ const SectionB = (props) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
   const [validated, setValidated] = useState(activeStep);
+  const [currentRoute, setCurrentRoute] = useState(() =>
+    props.activeStep ? 2 : 0
+  );
+  const [showBack, setShowBack] = useState(true);
+  const [placeholder, setPlaceholder] = useState([image1, image2, image3]);
+
+  if (activeStep === 1) {
+    if (showBack) setShowBack(false);
+  } else {
+    if (!showBack) setShowBack(true);
+  }
 
   useEffect(() => {
     // redirect if no access
@@ -74,13 +87,21 @@ const SectionB = (props) => {
   const nextHandler = () => {
     if (activeStep === stepsLength) {
       // last question
-      context.setAccess((prev) => {
-        return {
-          ...prev,
-          sectionC: true,
-        };
-      });
-      router.push("/section-c");
+      if (currentRoute === 2) {
+        // last route last question
+        console.log(context.responses);
+        context.setAccess((prev) => {
+          return {
+            ...prev,
+            sectionC: true,
+          };
+        });
+        router.push("/section-c");
+      } else {
+        // switch to next route and start over
+        setActiveStep(1);
+        setCurrentRoute((prev) => prev + 1);
+      }
     } else {
       setActiveStep((prev) => prev + 1);
     }
@@ -124,7 +145,7 @@ const SectionB = (props) => {
           }
           context.setResponses((prev) => {
             const newResponses = prev.sectionB;
-            newResponses[0] = e.target.value;
+            newResponses[currentRoute].responses[0] = e.target.value;
             return {
               ...prev,
               sectionB: newResponses,
@@ -132,7 +153,7 @@ const SectionB = (props) => {
           });
         };
 
-        value = context.responses.sectionB[0];
+        value = context.responses.sectionB[currentRoute].responses[0];
 
         return (
           <>
@@ -141,7 +162,10 @@ const SectionB = (props) => {
                 <Paper elevation={5} className={classes.questions}>
                   <Grid container direction="column" alignItems="center">
                     <Grid item style={{ margin: "15px 0" }}>
-                      <Image src={placeholder} alt="placeholder" />
+                      <Image
+                        src={placeholder[currentRoute]}
+                        alt="placeholder"
+                      />
                     </Grid>
                   </Grid>
                   <Typography variant="h5">
@@ -179,7 +203,9 @@ const SectionB = (props) => {
         );
         break;
       case 3:
-        let control = context.responses.sectionB[1].every((item) => {
+        let control = context.responses.sectionB[
+          currentRoute
+        ].responses[1].every((item) => {
           if (item.value === "x") {
             return false;
           }
@@ -189,12 +215,14 @@ const SectionB = (props) => {
           setValidated(activeStep);
         }
         handleChange = (e) => {
-          let indexToUpdate = context.responses.sectionB[1].findIndex(
+          let indexToUpdate = context.responses.sectionB[
+            currentRoute
+          ].responses[1].findIndex(
             (response) => response.key === e.target.name
           );
           context.setResponses((prev) => {
             const newResponses = prev.sectionB;
-            newResponses[1][indexToUpdate] = {
+            newResponses[currentRoute].responses[1][indexToUpdate] = {
               key: e.target.name,
               value: e.target.value,
             };
@@ -216,7 +244,10 @@ const SectionB = (props) => {
                   </Typography>
                   <Grid container direction="column" alignItems="center">
                     <Grid item style={{ margin: "15px 0" }}>
-                      <Image src={placeholder} alt="placeholder" />
+                      <Image
+                        src={placeholder[currentRoute]}
+                        alt="placeholder"
+                      />
                     </Grid>
                   </Grid>
                   <Typography variant="h5">
@@ -227,7 +258,9 @@ const SectionB = (props) => {
                 </Paper>
               </Grid>
               {step3Questions.map((question) => {
-                let current = context.responses.sectionB[1].find((item) => {
+                let current = context.responses.sectionB[
+                  currentRoute
+                ].responses[1].find((item) => {
                   return item.key === question.key;
                 });
                 return (
@@ -296,7 +329,7 @@ const SectionB = (props) => {
           }
           context.setResponses((prev) => {
             const newResponses = prev.sectionB;
-            newResponses[2] = e.target.value;
+            newResponses[currentRoute].responses[2] = e.target.value;
             return {
               ...prev,
               sectionB: newResponses,
@@ -304,7 +337,12 @@ const SectionB = (props) => {
           });
         };
 
-        value = context.responses.sectionB[2];
+        value = context.responses.sectionB[currentRoute].responses[2];
+        if (value !== "" && validated !== activeStep) {
+          setValidated(activeStep);
+        } else if (validated === activeStep && value === "") {
+          setValidated(activeStep - 1);
+        }
 
         return (
           <>
@@ -317,7 +355,10 @@ const SectionB = (props) => {
                   </Typography>
                   <Grid container direction="column" alignItems="center">
                     <Grid item style={{ margin: "15px 0" }}>
-                      <Image src={placeholder} alt="placeholder" />
+                      <Image
+                        src={placeholder[currentRoute]}
+                        alt="placeholder"
+                      />
                     </Grid>
                   </Grid>
                 </Paper>
@@ -353,7 +394,7 @@ const SectionB = (props) => {
           }
           context.setResponses((prev) => {
             const newResponses = prev.sectionB;
-            newResponses[3] = e.target.value;
+            newResponses[currentRoute].responses[3] = e.target.value;
             return {
               ...prev,
               sectionB: newResponses,
@@ -361,7 +402,7 @@ const SectionB = (props) => {
           });
         };
 
-        value = context.responses.sectionB[3];
+        value = context.responses.sectionB[currentRoute].responses[3];
 
         return (
           <>
@@ -374,7 +415,10 @@ const SectionB = (props) => {
                   </Typography>
                   <Grid container direction="column" alignItems="center">
                     <Grid item style={{ margin: "15px 0" }}>
-                      <Image src={placeholder} alt="placeholder" />
+                      <Image
+                        src={placeholder[currentRoute]}
+                        alt="placeholder"
+                      />
                     </Grid>
                   </Grid>
                 </Paper>
@@ -412,7 +456,7 @@ const SectionB = (props) => {
           }
           context.setResponses((prev) => {
             const newResponses = prev.sectionB;
-            newResponses[4] = e.target.value;
+            newResponses[currentRoute].responses[4] = e.target.value;
             return {
               ...prev,
               sectionB: newResponses,
@@ -420,7 +464,7 @@ const SectionB = (props) => {
           });
         };
 
-        value = context.responses.sectionB[4];
+        value = context.responses.sectionB[currentRoute].responses[4];
 
         return (
           <>
@@ -433,7 +477,10 @@ const SectionB = (props) => {
                   </Typography>
                   <Grid container direction="column" alignItems="center">
                     <Grid item style={{ margin: "15px 0" }}>
-                      <Image src={placeholder} alt="placeholder" />
+                      <Image
+                        src={placeholder[currentRoute]}
+                        alt="placeholder"
+                      />
                     </Grid>
                   </Grid>
                 </Paper>
@@ -470,7 +517,7 @@ const SectionB = (props) => {
           }
           context.setResponses((prev) => {
             const newResponses = prev.sectionB;
-            newResponses[5] = e.target.value;
+            newResponses[currentRoute].responses[5] = e.target.value;
             return {
               ...prev,
               sectionB: newResponses,
@@ -478,8 +525,12 @@ const SectionB = (props) => {
           });
         };
 
-        value = context.responses.sectionB[5];
-
+        value = context.responses.sectionB[currentRoute].responses[5];
+        if (value !== "" && validated !== activeStep) {
+          setValidated(activeStep);
+        } else if (validated === activeStep && value === "") {
+          setValidated(activeStep - 1);
+        }
         return (
           <>
             <Grid container direction="column" spacing={3}>
@@ -491,7 +542,10 @@ const SectionB = (props) => {
                   </Typography>
                   <Grid container direction="column" alignItems="center">
                     <Grid item style={{ margin: "15px 0" }}>
-                      <Image src={placeholder} alt="placeholder" />
+                      <Image
+                        src={placeholder[currentRoute]}
+                        alt="placeholder"
+                      />
                     </Grid>
                   </Grid>
                 </Paper>
@@ -539,7 +593,7 @@ const SectionB = (props) => {
             <div style={{ padding: "3rem" }}></div>
           </Grid>
           <Navigation
-            showBack={true}
+            showBack={showBack}
             showNext={activeStep === 1 || validated >= activeStep}
             nextHandler={nextHandler}
             backHandler={backHandler}

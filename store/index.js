@@ -13,17 +13,22 @@ const Context = React.createContext({
       },
     ],
     sectionB: [
-      "",
-      [
-        {
-          key: "",
-          value: "",
-        },
-      ],
-      "",
-      "",
-      "",
-      "",
+      {
+        key: "",
+        responses: [
+          "",
+          [
+            {
+              key: "",
+              value: "",
+            },
+          ],
+          "",
+          "",
+          "",
+          "",
+        ],
+      },
     ],
     sectionC: [
       {
@@ -50,11 +55,11 @@ const Context = React.createContext({
 export const ContextProvider = (props) => {
   // states here
   const [access, setAccess] = useState({
-    sectionA: false,
-    summary: false,
-    sectionB: false,
-    sectionC: false,
-    end: false,
+    sectionA: true,
+    summary: true,
+    sectionB: true,
+    sectionC: true,
+    end: true,
   });
   const [questions, setQuestions] = useState({});
   const [responses, setResponses] = useState({
@@ -66,17 +71,56 @@ export const ContextProvider = (props) => {
       };
     }),
     sectionB: [
-      "",
-      step3Questions.map((question) => {
-        return {
-          key: question.key,
-          value: "x",
-        };
-      }),
-      "",
-      "",
-      "",
-      "",
+      {
+        key: "baseline",
+        responses: [
+          "",
+          step3Questions.map((question) => {
+            return {
+              key: question.key,
+              value: "x",
+            };
+          }),
+          "",
+          "",
+          "",
+          "",
+        ],
+      },
+      {
+        key: "highest",
+        principle: "",
+        responses: [
+          "",
+          step3Questions.map((question) => {
+            return {
+              key: question.key,
+              value: "x",
+            };
+          }),
+          "",
+          "",
+          "",
+          "",
+        ],
+      },
+      {
+        key: "lowest",
+        principle: "",
+        responses: [
+          "",
+          step3Questions.map((question) => {
+            return {
+              key: question.key,
+              value: "x",
+            };
+          }),
+          "",
+          "",
+          "",
+          "",
+        ],
+      },
     ],
     sectionC: sectionCQuestions.map((question) => {
       return {
