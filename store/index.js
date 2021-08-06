@@ -55,11 +55,11 @@ const Context = React.createContext({
 export const ContextProvider = (props) => {
   // states here
   const [access, setAccess] = useState({
-    sectionA: true,
-    summary: true,
-    sectionB: true,
-    sectionC: true,
-    end: true,
+    sectionA: false,
+    summary: false,
+    sectionB: false,
+    sectionC: false,
+    end: false,
   });
   const [questions, setQuestions] = useState({});
   const [responses, setResponses] = useState({

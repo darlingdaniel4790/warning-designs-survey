@@ -581,13 +581,13 @@ const SectionB = (props) => {
   return (
     <>
       <Head>
-        <title>Section B - {activeStep}</title>
+        <title>Section B - {`${currentRoute + 1} - ${activeStep}`}</title>
       </Head>
       {showPage && (
         <>
           <Grid item lg={9} style={{ width: "100%" }}>
             <Typography variant="h2" gutterBottom={true}>
-              Section B - {activeStep}
+              Section B - {`${currentRoute + 1} - ${activeStep}`}
             </Typography>
             {questionShown()}
             <div style={{ padding: "3rem" }}></div>
