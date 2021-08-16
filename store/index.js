@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { questions as sectionAQuestions } from "../pages/section-a";
 import { step3Questions } from "../pages/section-b";
 import { questions as sectionCQuestions } from "../pages/section-c";
+import placeholder from "../assets/placeholder.jpg";
 
 const Context = React.createContext({
   responses: {
@@ -15,6 +16,8 @@ const Context = React.createContext({
     sectionB: [
       {
         key: "",
+        image: "",
+        principle: "",
         responses: [
           "",
           [
@@ -73,6 +76,7 @@ export const ContextProvider = (props) => {
     sectionB: [
       {
         key: "baseline",
+        image: placeholder,
         responses: [
           "",
           step3Questions.map((question) => {
@@ -89,6 +93,7 @@ export const ContextProvider = (props) => {
       },
       {
         key: "highest",
+        image: "",
         principle: "",
         responses: [
           "",
@@ -106,6 +111,7 @@ export const ContextProvider = (props) => {
       },
       {
         key: "lowest",
+        image: "",
         principle: "",
         responses: [
           "",

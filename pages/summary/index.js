@@ -4,6 +4,12 @@ import { useContext, useEffect, useState } from "react";
 import Navigation from "../../components/Navigation";
 import Context from "../../store";
 import Head from "next/head";
+import authorityImage from "../../assets/authority.png";
+import commitmentImage from "../../assets/commitment.jpg";
+import consensusImage from "../../assets/consensus.jpg";
+import likingImage from "../../assets/liking.jpg";
+import reciprocityImage from "../../assets/reciprocity.jpg";
+import scarcityImage from "../../assets/scarcity.jpg";
 
 const Summary = () => {
   const router = useRouter();
@@ -100,11 +106,18 @@ const Summary = () => {
       (iMax, x, i, arr) => (x > arr[iMax] ? i : iMax),
       0
     );
+    var indexOfMinValue = temp.reduce(
+      (iMax, x, i, arr) => (x < arr[iMax] ? i : iMax),
+      0
+    );
     temp = temp.map((element, index) => {
       if (index === indexOfMaxValue) {
         return (element = [element, "limegreen"]);
+      } else if (index === indexOfMinValue) {
+        return (element = [element, "red"]);
+      } else {
+        return (element = [element, ""]);
       }
-      return (element = [element, ""]);
     });
 
     setResponses({
@@ -119,21 +132,109 @@ const Summary = () => {
     switch (indexOfMaxValue) {
       case 0:
         setChosenMessage("You will now proceed for the Reciprocity test.");
+        context.setResponses((prev) => {
+          prev.sectionB[1].principle = "reciprocity";
+          prev.sectionB[1].image = reciprocityImage;
+          return prev;
+        });
         break;
       case 1:
         setChosenMessage("You will now proceed for the Scarcity test.");
+        context.setResponses((prev) => {
+          prev.sectionB[1].principle = "scarcity";
+          prev.sectionB[1].image = scarcityImage;
+          return prev;
+        });
+
         break;
       case 2:
         setChosenMessage("You will now proceed for the Authority test.");
+        context.setResponses((prev) => {
+          prev.sectionB[1].principle = "authority";
+          prev.sectionB[1].image = authorityImage;
+          return prev;
+        });
+
         break;
       case 3:
         setChosenMessage("You will now proceed for the Commitment test.");
+        context.setResponses((prev) => {
+          prev.sectionB[1].principle = "commitment";
+          prev.sectionB[1].image = commitmentImage;
+          return prev;
+        });
+
         break;
       case 4:
         setChosenMessage("You will now proceed for the Consensus test.");
+        context.setResponses((prev) => {
+          prev.sectionB[1].principle = "consensus";
+          prev.sectionB[1].image = consensusImage;
+          return prev;
+        });
+
         break;
       case 5:
         setChosenMessage("You will now proceed for the Liking test.");
+        context.setResponses((prev) => {
+          prev.sectionB[1].principle = "liking";
+          prev.sectionB[1].image = likingImage;
+          return prev;
+        });
+
+        break;
+
+      default:
+        break;
+    }
+
+    switch (indexOfMinValue) {
+      case 0:
+        context.setResponses((prev) => {
+          prev.sectionB[2].principle = "reciprocity";
+          prev.sectionB[2].image = reciprocityImage;
+          return prev;
+        });
+        break;
+      case 1:
+        context.setResponses((prev) => {
+          prev.sectionB[2].principle = "scarcity";
+          prev.sectionB[2].image = scarcityImage;
+          return prev;
+        });
+
+        break;
+      case 2:
+        context.setResponses((prev) => {
+          prev.sectionB[2].principle = "authority";
+          prev.sectionB[2].image = authorityImage;
+          return prev;
+        });
+
+        break;
+      case 3:
+        context.setResponses((prev) => {
+          prev.sectionB[2].principle = "commitment";
+          prev.sectionB[2].image = commitmentImage;
+          return prev;
+        });
+
+        break;
+      case 4:
+        context.setResponses((prev) => {
+          prev.sectionB[2].principle = "consensus";
+          prev.sectionB[2].image = consensusImage;
+          return prev;
+        });
+
+        break;
+      case 5:
+        context.setResponses((prev) => {
+          prev.sectionB[2].principle = "liking";
+          prev.sectionB[2].image = likingImage;
+          return prev;
+        });
+
         break;
 
       default:

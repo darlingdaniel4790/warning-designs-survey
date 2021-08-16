@@ -19,9 +19,6 @@ import { useContext, useEffect, useState } from "react";
 import Context from "../../store";
 import classes from "../section-a/index.module.css";
 import Image from "next/image";
-import image1 from "../../assets/1.png";
-import image2 from "../../assets/2.png";
-import image3 from "../../assets/placeholder.jpg";
 
 export const stepsLength = 7;
 export const step3Questions = [
@@ -65,8 +62,14 @@ const SectionB = (props) => {
     props.activeStep ? 2 : 0
   );
   const [showBack, setShowBack] = useState(true);
-  const [placeholder, setPlaceholder] = useState([image1, image2, image3]);
-
+  const [images] = useState(
+    context.responses.sectionB.map((obj) => {
+      return {
+        key: obj.principle,
+        value: obj.image,
+      };
+    })
+  );
   if (activeStep === 1) {
     if (showBack) setShowBack(false);
   } else {
@@ -100,6 +103,7 @@ const SectionB = (props) => {
       } else {
         // switch to next route and start over
         setActiveStep(1);
+        setValidated(1);
         setCurrentRoute((prev) => prev + 1);
       }
     } else {
@@ -163,8 +167,8 @@ const SectionB = (props) => {
                   <Grid container direction="column" alignItems="center">
                     <Grid item style={{ margin: "15px 0" }}>
                       <Image
-                        src={placeholder[currentRoute]}
-                        alt="placeholder"
+                        src={images[currentRoute].value}
+                        alt={images[currentRoute].key}
                       />
                     </Grid>
                   </Grid>
@@ -245,8 +249,8 @@ const SectionB = (props) => {
                   <Grid container direction="column" alignItems="center">
                     <Grid item style={{ margin: "15px 0" }}>
                       <Image
-                        src={placeholder[currentRoute]}
-                        alt="placeholder"
+                        src={images[currentRoute].value}
+                        alt={images[currentRoute].key}
                       />
                     </Grid>
                   </Grid>
@@ -356,8 +360,8 @@ const SectionB = (props) => {
                   <Grid container direction="column" alignItems="center">
                     <Grid item style={{ margin: "15px 0" }}>
                       <Image
-                        src={placeholder[currentRoute]}
-                        alt="placeholder"
+                        src={images[currentRoute].value}
+                        alt={images[currentRoute].key}
                       />
                     </Grid>
                   </Grid>
@@ -416,8 +420,8 @@ const SectionB = (props) => {
                   <Grid container direction="column" alignItems="center">
                     <Grid item style={{ margin: "15px 0" }}>
                       <Image
-                        src={placeholder[currentRoute]}
-                        alt="placeholder"
+                        src={images[currentRoute].value}
+                        alt={images[currentRoute].key}
                       />
                     </Grid>
                   </Grid>
@@ -478,8 +482,8 @@ const SectionB = (props) => {
                   <Grid container direction="column" alignItems="center">
                     <Grid item style={{ margin: "15px 0" }}>
                       <Image
-                        src={placeholder[currentRoute]}
-                        alt="placeholder"
+                        src={images[currentRoute].value}
+                        alt={images[currentRoute].key}
                       />
                     </Grid>
                   </Grid>
@@ -543,8 +547,8 @@ const SectionB = (props) => {
                   <Grid container direction="column" alignItems="center">
                     <Grid item style={{ margin: "15px 0" }}>
                       <Image
-                        src={placeholder[currentRoute]}
-                        alt="placeholder"
+                        src={images[currentRoute].value}
+                        alt={images[currentRoute].key}
                       />
                     </Grid>
                   </Grid>
