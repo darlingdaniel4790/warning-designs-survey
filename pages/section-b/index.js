@@ -129,7 +129,7 @@ const SectionB = (props) => {
             <Grid container direction="column" spacing={3}>
               <Grid item>
                 <Paper elevation={5} className={classes.questions}>
-                  <Typography variant="h5">
+                  <Typography variant="h4">
                     Ms. white is a new secretary of a popular logistic company
                     (name not shown due to privacy) she is presently activating
                     user accounts and assigning new orders. She clicked orders
@@ -141,7 +141,6 @@ const SectionB = (props) => {
             </Grid>
           </>
         );
-        break;
       case 2:
         handleChange = (e) => {
           if (validated !== activeStep) {
@@ -205,7 +204,6 @@ const SectionB = (props) => {
             </Grid>
           </>
         );
-        break;
       case 3:
         let control = context.responses.sectionB[
           currentRoute
@@ -323,7 +321,6 @@ const SectionB = (props) => {
             </Grid>
           </>
         );
-        break;
       case 4:
         handleChange = (e) => {
           if (e.target.value !== "" && validated !== activeStep) {
@@ -388,7 +385,6 @@ const SectionB = (props) => {
             </Grid>
           </>
         );
-        break;
       case 5:
         handleChange = (e) => {
           if (e.target.value !== "" && validated !== activeStep) {
@@ -450,7 +446,6 @@ const SectionB = (props) => {
             </Grid>
           </>
         );
-        break;
       case 6:
         handleChange = (e) => {
           if (e.target.value !== "" && validated !== activeStep) {
@@ -511,7 +506,6 @@ const SectionB = (props) => {
             </Grid>
           </>
         );
-        break;
       case 7:
         handleChange = (e) => {
           if (e.target.value !== "" && validated !== activeStep) {
@@ -575,8 +569,6 @@ const SectionB = (props) => {
             </Grid>
           </>
         );
-        break;
-
       default:
         break;
     }

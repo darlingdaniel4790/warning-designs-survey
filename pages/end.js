@@ -11,7 +11,7 @@ const End = () => {
   const [showPage, setShowPage] = useState(false);
   const context = useContext(Context);
   const [done, setDone] = useState(false);
-
+  console.log(context.responses);
   const uploadToFirestore = () => {
     let response = JSON.stringify(context.responses);
     firestoreDB

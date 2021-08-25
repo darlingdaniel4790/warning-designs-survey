@@ -60,8 +60,8 @@ export const ContextProvider = (props) => {
   const [access, setAccess] = useState({
     sectionA: false,
     summary: false,
-    sectionB: false,
-    sectionC: false,
+    sectionB: true,
+    sectionC: true,
     end: false,
   });
   const [questions, setQuestions] = useState({});
@@ -129,9 +129,15 @@ export const ContextProvider = (props) => {
       },
     ],
     sectionC: sectionCQuestions.map((question) => {
+      if (question.key === "5") {
+        return {
+          key: question.key,
+          value: question.options.map((op) => false),
+        };
+      }
       return {
         key: question.key,
-        value: "x",
+        value: "",
       };
     }),
   });

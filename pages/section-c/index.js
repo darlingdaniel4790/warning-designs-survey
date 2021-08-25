@@ -1,11 +1,15 @@
 import {
   FormControl,
+  FormGroup,
+  Checkbox,
   FormControlLabel,
   Grid,
   Paper,
   Radio,
   RadioGroup,
   Typography,
+  TextField,
+  FormHelperText,
 } from "@material-ui/core";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
@@ -17,45 +21,31 @@ import classes from "../section-a/index.module.css";
 export const questions = [
   {
     key: "1",
-    question: "What is your age group?",
-    options: [
-      "0 - 15 years old",
-      "15 - 30 years old",
-      "30 - 45 years old",
-      "45+",
-    ],
+    question: "Age group?",
+    options: ["18 - 24", "25 - 29", "30 - 34", "35+"],
   },
   {
     key: "2",
-    question: "Please specify your ethnicity.",
-    options: [
-      "Caucasian",
-      "African-American",
-      "Latino or Hispanic",
-      "Asian",
-      "Native American",
-      "Native Hawaiian or Pacific Islander",
-      "Two or More",
-      "Other/Unknown",
-    ],
+    question: "Gender?",
+    options: ["Female", "Male", "Decline to answer"],
   },
   {
     key: "3",
-    question:
-      "What is the highest degree or level of education you have completed?",
-    options: [
-      "Some High School",
-      "High School",
-      "Bachelor's Degree",
-      "Master's Degree",
-      "Ph.D. or higher",
-      "Trade School",
-    ],
+    question: "What is your current major?",
   },
   {
     key: "4",
-    question: "Are you married?",
-    options: ["Yes", "No"],
+    question: "What is your highest level of education?",
+    options: ["High School/GED", "Bachelor's Degree", "Master's Degree"],
+  },
+  {
+    key: "5",
+    question: "Which internet browser do you use?",
+    options: ["Chrome", "Firefox", "Internet Explorer", "Other"],
+  },
+  {
+    key: "6",
+    question: "How many hours in a week do you spend surfing the internet?",
   },
 ];
 
@@ -90,6 +80,21 @@ const SectionC = () => {
     router.push("/section-b/?fromC=true");
   };
 
+  const handleCheckChange = (e) => {
+    let indexToUpdate = context.responses.sectionC.findIndex(
+      (response) => response.key === e.target.name
+    );
+    context.setResponses((prev) => {
+      const newResponses = prev.sectionC;
+      newResponses[indexToUpdate].value[e.target.value] =
+        !newResponses[indexToUpdate].value[e.target.value];
+      return {
+        ...prev,
+        sectionC: newResponses,
+      };
+    });
+  };
+
   const handleChange = (e) => {
     let indexToUpdate = context.responses.sectionC.findIndex(
       (response) => response.key === e.target.name
@@ -108,20 +113,28 @@ const SectionC = () => {
   };
 
   const validate = () => {
-    let control = false;
+    let control = false,
+      control2 = false;
     context.responses.sectionC.every((item) => {
-      if (item.value === "x") {
+      if (item.value === "") {
         control = false;
         return false;
       }
       control = true;
       return true;
     });
-    if (control) {
-      setValidated(control);
-    }
+    context.responses.sectionC[4].value.every((item) => {
+      if (item) {
+        control2 = true;
+        return false;
+      }
+      control2 = false;
+      return true;
+    });
+    control = control && control2;
+    if (validated !== control) setValidated(control);
   };
-  if (!validated) validate();
+  validate();
 
   return (
     <>
@@ -147,27 +160,65 @@ const SectionC = () => {
                           {question.question}
                         </Typography>
                         <FormControl component="fieldset" fullWidth={true}>
-                          <RadioGroup
-                            aria-label={question.key}
-                            name={question.key}
-                            value={current.value}
-                            onChange={handleChange}
-                          >
-                            <Grid
-                              container
-                              direction="column"
-                              alignContent="flex-start"
-                            >
-                              {question.options.map((option, index) => (
-                                <FormControlLabel
-                                  value={option}
-                                  control={<Radio />}
-                                  label={option}
-                                  key={index}
-                                />
-                              ))}
-                            </Grid>
-                          </RadioGroup>
+                          {question.options ? (
+                            question.key === "5" ? (
+                              <FormControl component="fieldset">
+                                <FormHelperText>
+                                  Choose at least one
+                                </FormHelperText>
+                                <FormGroup>
+                                  {question.options.map((option, index) => (
+                                    <FormControlLabel
+                                      name={question.key}
+                                      control={
+                                        <Checkbox
+                                          color="primary"
+                                          onChange={handleCheckChange}
+                                          checked={current.value[index]}
+                                          value={index}
+                                        />
+                                      }
+                                      label={option}
+                                      key={index}
+                                    />
+                                  ))}
+                                </FormGroup>
+                              </FormControl>
+                            ) : (
+                              <RadioGroup
+                                aria-label={question.key}
+                                name={question.key}
+                                value={current.value}
+                                onChange={handleChange}
+                              >
+                                <Grid
+                                  container
+                                  direction="column"
+                                  alignContent="flex-start"
+                                >
+                                  {question.options.map((option, index) => (
+                                    <FormControlLabel
+                                      value={option}
+                                      control={<Radio />}
+                                      label={option}
+                                      key={index}
+                                    />
+                                  ))}
+                                </Grid>
+                              </RadioGroup>
+                            )
+                          ) : (
+                            <TextField
+                              variant="filled"
+                              multiline
+                              // rows={10}
+                              // rowsMax={20}
+                              name={question.key}
+                              value={current.value}
+                              onChange={handleChange}
+                              placeholder="Your response here."
+                            />
+                          )}
                         </FormControl>
                       </Paper>
                     </Grid>
