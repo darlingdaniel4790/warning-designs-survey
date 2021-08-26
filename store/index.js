@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { questions as sectionAQuestions } from "../pages/section-a";
 import { step3Questions } from "../pages/section-b";
 import { questions as sectionCQuestions } from "../pages/section-c";
-import placeholder from "../assets/placeholder.jpg";
+import placeholder from "../assets/placeholder.png";
 
 const Context = React.createContext({
   responses: {
