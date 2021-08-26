@@ -5,11 +5,11 @@ import Navigation from "../../components/Navigation";
 import Context from "../../store";
 import Head from "next/head";
 import authorityImage from "../../assets/authority.png";
-import commitmentImage from "../../assets/commitment.jpg";
-import consensusImage from "../../assets/consensus.jpg";
-import likingImage from "../../assets/liking.jpg";
-import reciprocityImage from "../../assets/reciprocity.jpg";
-import scarcityImage from "../../assets/scarcity.jpg";
+import commitmentImage from "../../assets/commitment.png";
+import consensusImage from "../../assets/consensus.png";
+import likingImage from "../../assets/liking.png";
+import reciprocityImage from "../../assets/reciprocity.png";
+import scarcityImage from "../../assets/scarcity.png";
 
 const Summary = () => {
   const router = useRouter();

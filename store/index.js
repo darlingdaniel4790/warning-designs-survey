@@ -20,12 +20,17 @@ const Context = React.createContext({
         principle: "",
         responses: [
           "",
+          [],
           [
             {
               key: "",
               value: "",
             },
           ],
+          [],
+          "",
+          "",
+          "",
           "",
           "",
           "",
@@ -60,8 +65,8 @@ export const ContextProvider = (props) => {
   const [access, setAccess] = useState({
     sectionA: false,
     summary: false,
-    sectionB: true,
-    sectionC: true,
+    sectionB: false,
+    sectionC: false,
     end: false,
   });
   const [questions, setQuestions] = useState({});
@@ -79,16 +84,21 @@ export const ContextProvider = (props) => {
         image: placeholder,
         responses: [
           "",
+          ["", ""],
           step3Questions.map((question) => {
             return {
               key: question.key,
               value: "x",
             };
           }),
+          ["", ""],
+          "x",
           "",
+          "x",
           "",
+          "x",
           "",
-          "",
+          "x",
         ],
       },
       {
@@ -97,16 +107,21 @@ export const ContextProvider = (props) => {
         principle: "",
         responses: [
           "",
+          ["", ""],
           step3Questions.map((question) => {
             return {
               key: question.key,
               value: "x",
             };
           }),
+          ["", ""],
+          "x",
           "",
+          "x",
           "",
+          "x",
           "",
-          "",
+          "x",
         ],
       },
       {
@@ -115,16 +130,21 @@ export const ContextProvider = (props) => {
         principle: "",
         responses: [
           "",
+          ["", ""],
           step3Questions.map((question) => {
             return {
               key: question.key,
               value: "x",
             };
           }),
+          ["", ""],
+          "x",
           "",
+          "x",
           "",
+          "x",
           "",
-          "",
+          "x",
         ],
       },
     ],

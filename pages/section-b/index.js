@@ -20,31 +20,21 @@ import Context from "../../store";
 import classes from "../section-a/index.module.css";
 import Image from "next/image";
 
-export const stepsLength = 7;
+export const stepsLength = 12;
 export const step3Questions = [
   {
     key: "1",
-    question:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    question: "I understood the message clearly.",
   },
   {
     key: "2",
-    question:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-  },
-  {
-    key: "3",
-    question:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-  },
-  {
-    key: "4",
-    question:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    question: "I am not interested in such popup messages.",
   },
 ];
 
 const SectionB = (props) => {
+  const [disabled, setDisabled] = useState(true);
+
   const router = useRouter();
   const [showPage, setShowPage] = useState(false);
   const context = useContext(Context);
@@ -75,7 +65,6 @@ const SectionB = (props) => {
   } else {
     if (!showBack) setShowBack(true);
   }
-
   useEffect(() => {
     // redirect if no access
     if (!context.access.sectionB) {
@@ -88,11 +77,11 @@ const SectionB = (props) => {
   }, []);
 
   const nextHandler = () => {
+    setDisabled(true);
     if (activeStep === stepsLength) {
       // last question
       if (currentRoute === 2) {
         // last route last question
-        console.log(context.responses);
         context.setAccess((prev) => {
           return {
             ...prev,
@@ -112,6 +101,7 @@ const SectionB = (props) => {
   };
 
   const backHandler = () => {
+    setDisabled(true);
     if (activeStep === 1) {
       // first question
       router.push("/summary");
@@ -121,7 +111,7 @@ const SectionB = (props) => {
   };
 
   let questionShown = () => {
-    let handleChange, value;
+    let handleChange, value, textAreaValue;
     switch (activeStep) {
       case 1:
         return (
@@ -205,9 +195,114 @@ const SectionB = (props) => {
           </>
         );
       case 3:
+        handleChange = (e) => {
+          if (e.target.type === "textarea") {
+            // textarea
+            if (e.target.value !== "" && validated !== activeStep) {
+              setValidated(activeStep);
+            } else if (e.target.value === "") {
+              setValidated(activeStep - 1);
+            }
+
+            context.setResponses((prev) => {
+              const newResponses = prev.sectionB;
+              newResponses[currentRoute].responses[1][1] = e.target.value;
+              return {
+                ...prev,
+                sectionB: newResponses,
+              };
+            });
+          } else {
+            // selects
+            if (
+              e.target.value !== "" &&
+              validated !== activeStep &&
+              e.target.value !== "Others"
+            ) {
+              setValidated(activeStep);
+            } else if (
+              (validated === activeStep && e.target.value === "") ||
+              e.target.value === "Others"
+            ) {
+              setValidated(activeStep - 1);
+            }
+            if (e.target.value === "Others") {
+              disabled && setDisabled(false);
+            } else {
+              !disabled && setDisabled(true);
+            }
+
+            context.setResponses((prev) => {
+              const newResponses = prev.sectionB;
+              newResponses[currentRoute].responses[1][0] = e.target.value;
+              newResponses[currentRoute].responses[1][1] = "";
+              return {
+                ...prev,
+                sectionB: newResponses,
+              };
+            });
+          }
+        };
+
+        value = context.responses.sectionB[currentRoute].responses[1][0];
+        textAreaValue =
+          context.responses.sectionB[currentRoute].responses[1][1];
+        textAreaValue && disabled && setDisabled(false);
+
+        return (
+          <>
+            <Grid container direction="column" spacing={3}>
+              <Grid item>
+                <Paper elevation={5} className={classes.questions}>
+                  <Typography variant="h5">
+                    Imagine you clicked on an email link and the following pop
+                    up message appears.
+                  </Typography>
+                  <Grid container direction="column" alignItems="center">
+                    <Grid item style={{ margin: "15px 0" }}>
+                      <Image
+                        src={images[currentRoute].value}
+                        alt={images[currentRoute].key}
+                      />
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </Grid>
+              <Grid item>
+                <Paper elevation={5} className={classes.questions}>
+                  <Typography variant="h5">
+                    When you saw the popup message what was your first reaction?
+                  </Typography>
+                  <FormControl fullWidth>
+                    <Select value={value} onChange={handleChange} displayEmpty>
+                      <MenuItem value="">
+                        <em>Select One</em>
+                      </MenuItem>
+                      <MenuItem value={"Go back"}>Go back</MenuItem>
+                      <MenuItem value={"Go forward"}>Go forward</MenuItem>
+                      <MenuItem value={"Others"}>Others</MenuItem>
+                    </Select>
+                    <TextField
+                      variant={disabled ? "filled" : "outlined"}
+                      multiline
+                      // rows={10}
+                      // rowsMax={20}
+                      value={textAreaValue}
+                      onChange={handleChange}
+                      // placeholder="Your response here."
+                      disabled={disabled}
+                    />
+                  </FormControl>
+                </Paper>
+              </Grid>
+            </Grid>
+          </>
+        );
+
+      case 4:
         let control = context.responses.sectionB[
           currentRoute
-        ].responses[1].every((item) => {
+        ].responses[2].every((item) => {
           if (item.value === "x") {
             return false;
           }
@@ -219,12 +314,12 @@ const SectionB = (props) => {
         handleChange = (e) => {
           let indexToUpdate = context.responses.sectionB[
             currentRoute
-          ].responses[1].findIndex(
+          ].responses[2].findIndex(
             (response) => response.key === e.target.name
           );
           context.setResponses((prev) => {
             const newResponses = prev.sectionB;
-            newResponses[currentRoute].responses[1][indexToUpdate] = {
+            newResponses[currentRoute].responses[2][indexToUpdate] = {
               key: e.target.name,
               value: e.target.value,
             };
@@ -262,7 +357,7 @@ const SectionB = (props) => {
               {step3Questions.map((question) => {
                 let current = context.responses.sectionB[
                   currentRoute
-                ].responses[1].find((item) => {
+                ].responses[2].find((item) => {
                   return item.key === question.key;
                 });
                 return (
@@ -321,29 +416,60 @@ const SectionB = (props) => {
             </Grid>
           </>
         );
-      case 4:
+      case 5:
         handleChange = (e) => {
-          if (e.target.value !== "" && validated !== activeStep) {
-            setValidated(activeStep);
-          } else if (validated === activeStep && e.target.value === "") {
-            setValidated(activeStep - 1);
+          if (e.target.type === "textarea") {
+            // textarea
+            if (e.target.value !== "" && validated !== activeStep) {
+              setValidated(activeStep);
+            } else if (e.target.value === "") {
+              setValidated(activeStep - 1);
+            }
+
+            context.setResponses((prev) => {
+              const newResponses = prev.sectionB;
+              newResponses[currentRoute].responses[3][1] = e.target.value;
+              return {
+                ...prev,
+                sectionB: newResponses,
+              };
+            });
+          } else {
+            // selects
+            if (
+              e.target.value !== "" &&
+              validated !== activeStep &&
+              e.target.value !== "Others"
+            ) {
+              setValidated(activeStep);
+            } else if (
+              (validated === activeStep && e.target.value === "") ||
+              e.target.value === "Others"
+            ) {
+              setValidated(activeStep - 1);
+            }
+            if (e.target.value === "Others") {
+              disabled && setDisabled(false);
+            } else {
+              !disabled && setDisabled(true);
+            }
+
+            context.setResponses((prev) => {
+              const newResponses = prev.sectionB;
+              newResponses[currentRoute].responses[3][0] = e.target.value;
+              newResponses[currentRoute].responses[3][1] = "";
+              return {
+                ...prev,
+                sectionB: newResponses,
+              };
+            });
           }
-          context.setResponses((prev) => {
-            const newResponses = prev.sectionB;
-            newResponses[currentRoute].responses[2] = e.target.value;
-            return {
-              ...prev,
-              sectionB: newResponses,
-            };
-          });
         };
 
-        value = context.responses.sectionB[currentRoute].responses[2];
-        if (value !== "" && validated !== activeStep) {
-          setValidated(activeStep);
-        } else if (validated === activeStep && value === "") {
-          setValidated(activeStep - 1);
-        }
+        value = context.responses.sectionB[currentRoute].responses[3][0];
+        textAreaValue =
+          context.responses.sectionB[currentRoute].responses[3][1];
+        textAreaValue && disabled && setDisabled(false);
 
         return (
           <>
@@ -367,17 +493,38 @@ const SectionB = (props) => {
               <Grid item>
                 <Paper elevation={5} className={classes.questions}>
                   <Typography variant="h5">
-                    Which word(s) did you find confusing or too technical?
+                    What action, if any, did the popup message want you to take?
                   </Typography>
                   <FormControl fullWidth>
+                    <Select value={value} onChange={handleChange} displayEmpty>
+                      <MenuItem value="">
+                        <em>Select One</em>
+                      </MenuItem>
+                      <MenuItem value={"To continue to the website"}>
+                        To continue to the website
+                      </MenuItem>
+                      <MenuItem
+                        value={"To be careful while continuing to the website"}
+                      >
+                        To be careful while continuing to the website
+                      </MenuItem>
+                      <MenuItem value={"To not continue to the website"}>
+                        To not continue to the website
+                      </MenuItem>
+                      <MenuItem value={"I did not feel anything"}>
+                        I did not feel anything
+                      </MenuItem>
+                      <MenuItem value={"Others"}>Others</MenuItem>
+                    </Select>
                     <TextField
-                      variant="filled"
+                      variant={disabled ? "filled" : "outlined"}
                       multiline
-                      rows={10}
-                      rowsMax={20}
-                      value={value}
+                      // rows={10}
+                      // rowsMax={20}
+                      value={textAreaValue}
                       onChange={handleChange}
-                      placeholder="Your response here."
+                      // placeholder="Your response here."
+                      disabled={disabled}
                     />
                   </FormControl>
                 </Paper>
@@ -385,70 +532,10 @@ const SectionB = (props) => {
             </Grid>
           </>
         );
-      case 5:
-        handleChange = (e) => {
-          if (e.target.value !== "" && validated !== activeStep) {
-            setValidated(activeStep);
-          } else if (validated === activeStep && e.target.value === "") {
-            setValidated(activeStep - 1);
-          }
-          context.setResponses((prev) => {
-            const newResponses = prev.sectionB;
-            newResponses[currentRoute].responses[3] = e.target.value;
-            return {
-              ...prev,
-              sectionB: newResponses,
-            };
-          });
-        };
 
-        value = context.responses.sectionB[currentRoute].responses[3];
-
-        return (
-          <>
-            <Grid container direction="column" spacing={3}>
-              <Grid item>
-                <Paper elevation={5} className={classes.questions}>
-                  <Typography variant="h5">
-                    Imagine you clicked on an email link and the following pop
-                    up message appears.
-                  </Typography>
-                  <Grid container direction="column" alignItems="center">
-                    <Grid item style={{ margin: "15px 0" }}>
-                      <Image
-                        src={images[currentRoute].value}
-                        alt={images[currentRoute].key}
-                      />
-                    </Grid>
-                  </Grid>
-                </Paper>
-              </Grid>
-              <Grid item>
-                <Paper elevation={5} className={classes.questions}>
-                  <Typography variant="h5">
-                    Please rate the amount of risk you feel you were warned
-                    against?
-                  </Typography>
-                  <FormControl fullWidth>
-                    <Select value={value} onChange={handleChange} displayEmpty>
-                      <MenuItem value="">
-                        <em>Select One</em>
-                      </MenuItem>
-                      <MenuItem value={0}>None</MenuItem>
-                      <MenuItem value={1}>Option 1</MenuItem>
-                      <MenuItem value={2}>Option 2</MenuItem>
-                      <MenuItem value={3}>Option 3</MenuItem>
-                      <MenuItem value={4}>Option 4</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Paper>
-              </Grid>
-            </Grid>
-          </>
-        );
       case 6:
         handleChange = (e) => {
-          if (e.target.value !== "" && validated !== activeStep) {
+          if (e.target.value !== "x" && validated !== activeStep) {
             setValidated(activeStep);
           } else if (validated === activeStep && e.target.value === "") {
             setValidated(activeStep - 1);
@@ -487,19 +574,53 @@ const SectionB = (props) => {
               <Grid item>
                 <Paper elevation={5} className={classes.questions}>
                   <Typography variant="h5">
-                    What action, if any, did the popup message want you to take?
+                    Please rate the amount of risk you feel you were warned
+                    against.
                   </Typography>
-                  <FormControl fullWidth>
-                    <Select value={value} onChange={handleChange} displayEmpty>
-                      <MenuItem value="">
-                        <em>Select One</em>
-                      </MenuItem>
-                      <MenuItem value={0}>None</MenuItem>
-                      <MenuItem value={1}>Option 1</MenuItem>
-                      <MenuItem value={2}>Option 2</MenuItem>
-                      <MenuItem value={3}>Option 3</MenuItem>
-                      <MenuItem value={4}>Option 4</MenuItem>
-                    </Select>
+                  <FormControl component="fieldset" fullWidth={true}>
+                    <RadioGroup
+                      // name={question.key}
+                      value={value}
+                      onChange={handleChange}
+                    >
+                      <Grid
+                        container
+                        className={classes.questionsRadios}
+                        direction={!matches ? "column" : "row"}
+                        alignContent={matches ? "center" : "flex-start"}
+                      >
+                        <FormControlLabel
+                          value="1"
+                          control={<Radio />}
+                          label="Very low risk"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="2"
+                          control={<Radio />}
+                          label="Low risk"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="3"
+                          control={<Radio />}
+                          label="Moderate risk"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="4"
+                          control={<Radio />}
+                          label="High risk"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="5"
+                          control={<Radio />}
+                          label="Very high risk"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                      </Grid>
+                    </RadioGroup>
                   </FormControl>
                 </Paper>
               </Grid>
@@ -557,12 +678,425 @@ const SectionB = (props) => {
                     <TextField
                       variant="filled"
                       multiline
-                      rows={10}
-                      rowsMax={20}
+                      rows={5}
+                      rowsMax={10}
                       value={value}
                       onChange={handleChange}
                       placeholder="Your response here."
                     />
+                  </FormControl>
+                </Paper>
+              </Grid>
+            </Grid>
+          </>
+        );
+
+      case 8:
+        handleChange = (e) => {
+          if (e.target.value !== "x" && validated !== activeStep) {
+            setValidated(activeStep);
+          } else if (validated === activeStep && e.target.value === "") {
+            setValidated(activeStep - 1);
+          }
+          context.setResponses((prev) => {
+            const newResponses = prev.sectionB;
+            newResponses[currentRoute].responses[6] = e.target.value;
+            return {
+              ...prev,
+              sectionB: newResponses,
+            };
+          });
+        };
+
+        value = context.responses.sectionB[currentRoute].responses[6];
+
+        return (
+          <>
+            <Grid container direction="column" spacing={3}>
+              <Grid item>
+                <Paper elevation={5} className={classes.questions}>
+                  <Typography variant="h5">
+                    Imagine you clicked on an email link and the following pop
+                    up message appears.
+                  </Typography>
+                  <Grid container direction="column" alignItems="center">
+                    <Grid item style={{ margin: "15px 0" }}>
+                      <Image
+                        src={images[currentRoute].value}
+                        alt={images[currentRoute].key}
+                      />
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </Grid>
+              <Grid item>
+                <Paper elevation={5} className={classes.questions}>
+                  <Typography variant="h5">
+                    Please rate your level of trust for this message.
+                  </Typography>
+                  <FormControl component="fieldset" fullWidth={true}>
+                    <RadioGroup
+                      // name={question.key}
+                      value={value}
+                      onChange={handleChange}
+                    >
+                      <Grid
+                        container
+                        className={classes.questionsRadios}
+                        direction={!matches ? "column" : "row"}
+                        alignContent={matches ? "center" : "flex-start"}
+                      >
+                        <FormControlLabel
+                          value="1"
+                          control={<Radio />}
+                          label="Strongly Disagree"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="2"
+                          control={<Radio />}
+                          label="Disagree"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="3"
+                          control={<Radio />}
+                          label="Not Sure"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="4"
+                          control={<Radio />}
+                          label="Agree"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="5"
+                          control={<Radio />}
+                          label="Strongly Agree"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                      </Grid>
+                    </RadioGroup>
+                  </FormControl>
+                </Paper>
+              </Grid>
+            </Grid>
+          </>
+        );
+      case 9:
+        handleChange = (e) => {
+          if (e.target.value !== "" && validated !== activeStep) {
+            setValidated(activeStep);
+          } else if (validated === activeStep && e.target.value === "") {
+            setValidated(activeStep - 1);
+          }
+          context.setResponses((prev) => {
+            const newResponses = prev.sectionB;
+            newResponses[currentRoute].responses[7] = e.target.value;
+            return {
+              ...prev,
+              sectionB: newResponses,
+            };
+          });
+        };
+
+        value = context.responses.sectionB[currentRoute].responses[7];
+        if (value !== "" && validated !== activeStep) {
+          setValidated(activeStep);
+        } else if (validated === activeStep && value === "") {
+          setValidated(activeStep - 1);
+        }
+        return (
+          <>
+            <Grid container direction="column" spacing={3}>
+              <Grid item>
+                <Paper elevation={5} className={classes.questions}>
+                  <Typography variant="h5">
+                    Imagine you clicked on an email link and the following pop
+                    up message appears.
+                  </Typography>
+                  <Grid container direction="column" alignItems="center">
+                    <Grid item style={{ margin: "15px 0" }}>
+                      <Image
+                        src={images[currentRoute].value}
+                        alt={images[currentRoute].key}
+                      />
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </Grid>
+              <Grid item>
+                <Paper elevation={5} className={classes.questions}>
+                  <Typography variant="h5">
+                    In a short sentence summarize the aim of the message.
+                  </Typography>
+                  <FormControl fullWidth>
+                    <TextField
+                      variant="filled"
+                      multiline
+                      rows={5}
+                      rowsMax={10}
+                      value={value}
+                      onChange={handleChange}
+                      placeholder="Your response here."
+                    />
+                  </FormControl>
+                </Paper>
+              </Grid>
+            </Grid>
+          </>
+        );
+
+      case 10:
+        handleChange = (e) => {
+          if (e.target.value !== "x" && validated !== activeStep) {
+            setValidated(activeStep);
+          } else if (validated === activeStep && e.target.value === "") {
+            setValidated(activeStep - 1);
+          }
+          context.setResponses((prev) => {
+            const newResponses = prev.sectionB;
+            newResponses[currentRoute].responses[8] = e.target.value;
+            return {
+              ...prev,
+              sectionB: newResponses,
+            };
+          });
+        };
+
+        value = context.responses.sectionB[currentRoute].responses[8];
+
+        return (
+          <>
+            <Grid container direction="column" spacing={3}>
+              <Grid item>
+                <Paper elevation={5} className={classes.questions}>
+                  <Typography variant="h5">
+                    Imagine you clicked on an email link and the following pop
+                    up message appears.
+                  </Typography>
+                  <Grid container direction="column" alignItems="center">
+                    <Grid item style={{ margin: "15px 0" }}>
+                      <Image
+                        src={images[currentRoute].value}
+                        alt={images[currentRoute].key}
+                      />
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </Grid>
+              <Grid item>
+                <Paper elevation={5} className={classes.questions}>
+                  <Typography variant="h5">
+                    How likely is it that something bad would happen if you
+                    continued to the website after seeing this message?
+                  </Typography>
+                  <FormControl component="fieldset" fullWidth={true}>
+                    <RadioGroup
+                      // name={question.key}
+                      value={value}
+                      onChange={handleChange}
+                    >
+                      <Grid
+                        container
+                        className={classes.questionsRadios}
+                        direction={!matches ? "column" : "row"}
+                        alignContent={matches ? "center" : "flex-start"}
+                      >
+                        <FormControlLabel
+                          value="1"
+                          control={<Radio />}
+                          label="Very Unlikely"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="2"
+                          control={<Radio />}
+                          label="Unlikely"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="3"
+                          control={<Radio />}
+                          label="Neutral"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="4"
+                          control={<Radio />}
+                          label="Likely"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="5"
+                          control={<Radio />}
+                          label="Very Likely"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                      </Grid>
+                    </RadioGroup>
+                  </FormControl>
+                </Paper>
+              </Grid>
+            </Grid>
+          </>
+        );
+
+      case 11:
+        handleChange = (e) => {
+          if (e.target.value !== "" && validated !== activeStep) {
+            setValidated(activeStep);
+          } else if (validated === activeStep && e.target.value === "") {
+            setValidated(activeStep - 1);
+          }
+          context.setResponses((prev) => {
+            const newResponses = prev.sectionB;
+            newResponses[currentRoute].responses[9] = e.target.value;
+            return {
+              ...prev,
+              sectionB: newResponses,
+            };
+          });
+        };
+
+        value = context.responses.sectionB[currentRoute].responses[9];
+        if (value !== "" && validated !== activeStep) {
+          setValidated(activeStep);
+        } else if (validated === activeStep && value === "") {
+          setValidated(activeStep - 1);
+        }
+
+        return (
+          <>
+            <Grid container direction="column" spacing={3}>
+              <Grid item>
+                <Paper elevation={5} className={classes.questions}>
+                  <Typography variant="h5">
+                    Imagine you clicked on an email link and the following pop
+                    up message appears.
+                  </Typography>
+                  <Grid container direction="column" alignItems="center">
+                    <Grid item style={{ margin: "15px 0" }}>
+                      <Image
+                        src={images[currentRoute].value}
+                        alt={images[currentRoute].key}
+                      />
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </Grid>
+              <Grid item>
+                <Paper elevation={5} className={classes.questions}>
+                  <Typography variant="h5">
+                    Which of the words/sentences was most convincing to you?
+                    (Please pick a word/sentence from the picture message)
+                  </Typography>
+                  <FormControl fullWidth>
+                    <TextField
+                      variant="filled"
+                      multiline
+                      rows={5}
+                      rowsMax={10}
+                      value={value}
+                      onChange={handleChange}
+                      placeholder="Your response here."
+                    />
+                  </FormControl>
+                </Paper>
+              </Grid>
+            </Grid>
+          </>
+        );
+
+      case 12:
+        handleChange = (e) => {
+          if (e.target.value !== "x" && validated !== activeStep) {
+            setValidated(activeStep);
+          } else if (validated === activeStep && e.target.value === "") {
+            setValidated(activeStep - 1);
+          }
+          context.setResponses((prev) => {
+            const newResponses = prev.sectionB;
+            newResponses[currentRoute].responses[10] = e.target.value;
+            return {
+              ...prev,
+              sectionB: newResponses,
+            };
+          });
+        };
+
+        value = context.responses.sectionB[currentRoute].responses[10];
+
+        return (
+          <>
+            <Grid container direction="column" spacing={3}>
+              <Grid item>
+                <Paper elevation={5} className={classes.questions}>
+                  <Typography variant="h5">
+                    Imagine you clicked on an email link and the following pop
+                    up message appears.
+                  </Typography>
+                  <Grid container direction="column" alignItems="center">
+                    <Grid item style={{ margin: "15px 0" }}>
+                      <Image
+                        src={images[currentRoute].value}
+                        alt={images[currentRoute].key}
+                      />
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </Grid>
+              <Grid item>
+                <Paper elevation={5} className={classes.questions}>
+                  <Typography variant="h5">
+                    Do you agree with the reasons and recommendations of the
+                    message?
+                  </Typography>
+                  <FormControl component="fieldset" fullWidth={true}>
+                    <RadioGroup
+                      // name={question.key}
+                      value={value}
+                      onChange={handleChange}
+                    >
+                      <Grid
+                        container
+                        className={classes.questionsRadios}
+                        direction={!matches ? "column" : "row"}
+                        alignContent={matches ? "center" : "flex-start"}
+                      >
+                        <FormControlLabel
+                          value="1"
+                          control={<Radio />}
+                          label="Strongly Disagree"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="2"
+                          control={<Radio />}
+                          label="Disagree"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="3"
+                          control={<Radio />}
+                          label="Not Sure"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="4"
+                          control={<Radio />}
+                          label="Agree"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="5"
+                          control={<Radio />}
+                          label="Strongly Agree"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                      </Grid>
+                    </RadioGroup>
                   </FormControl>
                 </Paper>
               </Grid>
