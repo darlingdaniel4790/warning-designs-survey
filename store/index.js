@@ -80,28 +80,6 @@ export const ContextProvider = (props) => {
     }),
     sectionB: [
       {
-        key: "baseline",
-        image: placeholder,
-        responses: [
-          "",
-          ["", ""],
-          step3Questions.map((question) => {
-            return {
-              key: question.key,
-              value: "x",
-            };
-          }),
-          ["", ""],
-          "x",
-          "",
-          "x",
-          "",
-          "x",
-          "",
-          "x",
-        ],
-      },
-      {
         key: "highest",
         image: "",
         principle: "",
@@ -128,6 +106,28 @@ export const ContextProvider = (props) => {
         key: "lowest",
         image: "",
         principle: "",
+        responses: [
+          "",
+          ["", ""],
+          step3Questions.map((question) => {
+            return {
+              key: question.key,
+              value: "x",
+            };
+          }),
+          ["", ""],
+          "x",
+          "",
+          "x",
+          "",
+          "x",
+          "",
+          "x",
+        ],
+      },
+      {
+        key: "baseline",
+        image: placeholder,
         responses: [
           "",
           ["", ""],

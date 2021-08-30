@@ -43,7 +43,7 @@ const SectionB = (props) => {
       router.replace("/section-b");
       return props.activeStep;
     }
-    return 1;
+    return 0;
   });
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
@@ -60,7 +60,7 @@ const SectionB = (props) => {
       };
     })
   );
-  if (activeStep === 1) {
+  if (activeStep === 1 || activeStep === 0) {
     if (showBack) setShowBack(false);
   } else {
     if (!showBack) setShowBack(true);
@@ -113,6 +113,19 @@ const SectionB = (props) => {
   let questionShown = () => {
     let handleChange, value, textAreaValue;
     switch (activeStep) {
+      case 0:
+        return (
+          <>
+            <Grid container direction="column" spacing={3}>
+              <Grid item>
+                <Typography variant="h4">
+                  The Image you will find require you carefully observe, read,
+                  and analyse.
+                </Typography>
+              </Grid>
+            </Grid>
+          </>
+        );
       case 1:
         return (
           <>
@@ -1111,13 +1124,17 @@ const SectionB = (props) => {
   return (
     <>
       <Head>
-        <title>Section B - {`${currentRoute + 1} - ${activeStep}`}</title>
+        <title>
+          Section B {currentRoute !== 0 ? "- " : ""}
+          {currentRoute !== 0 ? `${currentRoute + 1} - ${activeStep}` : ""}
+        </title>
       </Head>
       {showPage && (
         <>
           <Grid item lg={9} style={{ width: "100%" }}>
             <Typography variant="h2" gutterBottom={true}>
-              Section B - {`${currentRoute + 1} - ${activeStep}`}
+              Section B {currentRoute !== 0 && "- "}
+              {currentRoute !== 0 && `${currentRoute + 1} - ${activeStep}`}
             </Typography>
             {questionShown()}
             <div style={{ padding: "3rem" }}></div>
