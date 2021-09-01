@@ -133,16 +133,16 @@ const Summary = () => {
       case 0:
         setChosenMessage("You will now proceed for the Reciprocity test.");
         context.setResponses((prev) => {
-          prev.sectionB[1].principle = "reciprocity";
-          prev.sectionB[1].image = reciprocityImage;
+          prev.sectionB[0].principle = "reciprocity";
+          prev.sectionB[0].image = reciprocityImage;
           return prev;
         });
         break;
       case 1:
         setChosenMessage("You will now proceed for the Scarcity test.");
         context.setResponses((prev) => {
-          prev.sectionB[1].principle = "scarcity";
-          prev.sectionB[1].image = scarcityImage;
+          prev.sectionB[0].principle = "scarcity";
+          prev.sectionB[0].image = scarcityImage;
           return prev;
         });
 
@@ -150,8 +150,8 @@ const Summary = () => {
       case 2:
         setChosenMessage("You will now proceed for the Authority test.");
         context.setResponses((prev) => {
-          prev.sectionB[1].principle = "authority";
-          prev.sectionB[1].image = authorityImage;
+          prev.sectionB[0].principle = "authority";
+          prev.sectionB[0].image = authorityImage;
           return prev;
         });
 
@@ -159,8 +159,8 @@ const Summary = () => {
       case 3:
         setChosenMessage("You will now proceed for the Commitment test.");
         context.setResponses((prev) => {
-          prev.sectionB[1].principle = "commitment";
-          prev.sectionB[1].image = commitmentImage;
+          prev.sectionB[0].principle = "commitment";
+          prev.sectionB[0].image = commitmentImage;
           return prev;
         });
 
@@ -168,8 +168,8 @@ const Summary = () => {
       case 4:
         setChosenMessage("You will now proceed for the Consensus test.");
         context.setResponses((prev) => {
-          prev.sectionB[1].principle = "consensus";
-          prev.sectionB[1].image = consensusImage;
+          prev.sectionB[0].principle = "consensus";
+          prev.sectionB[0].image = consensusImage;
           return prev;
         });
 
@@ -177,8 +177,8 @@ const Summary = () => {
       case 5:
         setChosenMessage("You will now proceed for the Liking test.");
         context.setResponses((prev) => {
-          prev.sectionB[1].principle = "liking";
-          prev.sectionB[1].image = likingImage;
+          prev.sectionB[0].principle = "liking";
+          prev.sectionB[0].image = likingImage;
           return prev;
         });
 
@@ -191,47 +191,47 @@ const Summary = () => {
     switch (indexOfMinValue) {
       case 0:
         context.setResponses((prev) => {
-          prev.sectionB[2].principle = "reciprocity";
-          prev.sectionB[2].image = reciprocityImage;
+          prev.sectionB[1].principle = "reciprocity";
+          prev.sectionB[1].image = reciprocityImage;
           return prev;
         });
         break;
       case 1:
         context.setResponses((prev) => {
-          prev.sectionB[2].principle = "scarcity";
-          prev.sectionB[2].image = scarcityImage;
+          prev.sectionB[1].principle = "scarcity";
+          prev.sectionB[1].image = scarcityImage;
           return prev;
         });
 
         break;
       case 2:
         context.setResponses((prev) => {
-          prev.sectionB[2].principle = "authority";
-          prev.sectionB[2].image = authorityImage;
+          prev.sectionB[1].principle = "authority";
+          prev.sectionB[1].image = authorityImage;
           return prev;
         });
 
         break;
       case 3:
         context.setResponses((prev) => {
-          prev.sectionB[2].principle = "commitment";
-          prev.sectionB[2].image = commitmentImage;
+          prev.sectionB[1].principle = "commitment";
+          prev.sectionB[1].image = commitmentImage;
           return prev;
         });
 
         break;
       case 4:
         context.setResponses((prev) => {
-          prev.sectionB[2].principle = "consensus";
-          prev.sectionB[2].image = consensusImage;
+          prev.sectionB[1].principle = "consensus";
+          prev.sectionB[1].image = consensusImage;
           return prev;
         });
 
         break;
       case 5:
         context.setResponses((prev) => {
-          prev.sectionB[2].principle = "liking";
-          prev.sectionB[2].image = likingImage;
+          prev.sectionB[1].principle = "liking";
+          prev.sectionB[1].image = likingImage;
           return prev;
         });
 
