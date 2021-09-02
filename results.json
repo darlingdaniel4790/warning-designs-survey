@@ -1,0 +1,109 @@
+{
+  "sectionA": [
+    { "key": "1", "value": "1", "principle": "reciprocity" },
+    { "key": "2", "value": "5", "principle": "reciprocity" },
+    { "key": "3", "value": "2", "principle": "reciprocity" },
+    { "key": "4", "value": "2", "principle": "scarcity" },
+    { "key": "5", "value": "4", "principle": "scarcity" },
+    { "key": "6", "value": "1", "principle": "scarcity" },
+    { "key": "7", "value": "1", "principle": "authority" },
+    { "key": "8", "value": "3", "principle": "authority" },
+    { "key": "9", "value": "2", "principle": "authority" },
+    { "key": "10", "value": "4", "principle": "commitment" },
+    { "key": "11", "value": "4", "principle": "commitment" },
+    { "key": "12", "value": "3", "principle": "commitment" },
+    { "key": "13", "value": "2", "principle": "concensus" },
+    { "key": "14", "value": "3", "principle": "concensus" },
+    { "key": "15", "value": "4", "principle": "concensus" },
+    { "key": "16", "value": "5", "principle": "liking" },
+    { "key": "17", "value": "3", "principle": "liking" },
+    { "key": "18", "value": "2", "principle": "liking" }
+  ],
+  "sectionB": [
+    {
+      "key": "highest",
+      "image": {
+        "src": "/_next/static/image/assets/commitment.943810b80005f54cfd87489ffb15c137.png",
+        "height": 596,
+        "width": 950,
+        "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAkklEQVR4nB2NWwqCUBiEv/9kUgTdKOrZFfTgWmoB7cKNuZoQwSQQtUC6aJ6/YwPDDAMzI10UWYljkSxT6juMPbCWP0SQ7nRUxZmqUi9JUG8ExiBWRfuvy7cbbYMA1itMUWDqBybPscbHH4qX3V5fUx92S6T5OL6RsnTasBhe+jBUaVskvSrzmZsXuKVkh7M8JzN+eOw5zo7sxPMAAAAASUVORK5CYII="
+      },
+      "principle": "commitment",
+      "responses": [
+        "Partially",
+        ["Go forward", ""],
+        [
+          { "key": "1", "value": "3" },
+          { "key": "2", "value": "3" }
+        ],
+        ["To be careful while continuing to the website", ""],
+        "3",
+        "sdf",
+        "4",
+        "sdfsd",
+        "4",
+        "sdfsd",
+        "4"
+      ]
+    },
+    {
+      "key": "lowest",
+      "image": {
+        "src": "/_next/static/image/assets/authority.fea28c40f78333dea8dd216565a754c4.png",
+        "height": 597,
+        "width": 960,
+        "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAjUlEQVR4nCWMUQqCUBREZ3yG4YfZTwtIXEj991eLcWMuJQLJViBWvCTreW9XGhhm4DDDb1UJ65psGmAYFH/RDKQp+DkdRZ0j+x6uvSliZzgiZJoT9GUpYZ1TVxmi/q70fgZUg3EIYFsU8rBDbjLg+QI7DyYLYOyQj9bf+51QhPH5AiwThb3T9tftARMcfkdJNR8fRJI9AAAAAElFTkSuQmCC"
+      },
+      "principle": "authority",
+      "responses": [
+        "Partially",
+        ["Go back", ""],
+        [
+          { "key": "1", "value": "4" },
+          { "key": "2", "value": "4" }
+        ],
+        ["To be careful while continuing to the website", ""],
+        "4",
+        "sdf",
+        "4",
+        "sdf",
+        "4",
+        "sdf",
+        "5"
+      ]
+    },
+    {
+      "key": "baseline",
+      "image": {
+        "src": "/_next/static/image/assets/placeholder.77b8c5eec7dbb0f59ff432e8eb54c696.png",
+        "height": 594,
+        "width": 955,
+        "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAiElEQVR4nB2NMQ6CQBQF5+GqBQV6BgotTbwMl9Cec+lBjJ0txkITI8FYwJr9fpnkFW+aUaxr0/EAXYcMo2lw5BtRrCqzlFDf+xlM94fbTIQJWduiy3Zjn6IgDD3EaMznKASld8fsfELtemW8nkiYKYMwRdebvvsdLJYml15OXhsx3x9RlpDn/ACVzzVuqvrvcQAAAABJRU5ErkJggg=="
+      },
+      "responses": [
+        "Yes",
+        ["Go back", ""],
+        [
+          { "key": "1", "value": "4" },
+          { "key": "2", "value": "5" }
+        ],
+        ["To not continue to the website", ""],
+        "4",
+        "sd",
+        "5",
+        "sdf",
+        "3",
+        "sdfsd",
+        "2"
+      ]
+    }
+  ],
+  "sectionC": [
+    { "key": "1", "value": "25 - 29" },
+    { "key": "2", "value": "Female" },
+    { "key": "3", "value": "ds" },
+    { "key": "4", "value": "Bachelor's Degree" },
+    { "key": "5", "value": [true, false, false, false] },
+    { "key": "6", "value": "43" }
+  ]
+}

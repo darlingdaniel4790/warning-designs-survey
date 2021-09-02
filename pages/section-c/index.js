@@ -47,6 +47,10 @@ export const questions = [
     key: "6",
     question: "How many hours in a week do you spend surfing the internet?",
   },
+  {
+    key: "7",
+    question: "Please could you drop your final comments on this survey?",
+  },
 ];
 
 const SectionC = () => {
@@ -207,6 +211,18 @@ const SectionC = () => {
                                 </Grid>
                               </RadioGroup>
                             )
+                          ) : question.key === "6" ? (
+                            <TextField
+                              type="number"
+                              variant="filled"
+                              // multiline
+                              // rows={10}
+                              // rowsMax={20}
+                              name={question.key}
+                              value={current.value}
+                              onChange={handleChange}
+                              placeholder="Your response here."
+                            />
                           ) : (
                             <TextField
                               variant="filled"
