@@ -5,3 +5,8 @@
 .questionsRadios {
   justify-content: space-between;
 }
+
+.radioQuestions {
+  margin: 1rem !important;
+  border: 1px solid gray;
+}
