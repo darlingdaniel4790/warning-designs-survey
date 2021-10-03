@@ -323,7 +323,7 @@ const Summary = () => {
             <div style={{ padding: "3rem" }}></div>
           </Grid>
           <Navigation
-            showBack={true}
+            showBack={false}
             showNext={true}
             nextHandler={nextHandler}
             backHandler={backHandler}

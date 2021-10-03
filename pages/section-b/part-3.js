@@ -45,7 +45,6 @@ const Part3 = (props) => {
   const [validated, setValidated] = useState([false]);
   // console.log(validated);
   const [allValidated, setAllValidated] = useState(false);
-  const [showBack, setShowBack] = useState(false);
   const [images] = useState(
     context.responses.sectionB.map((obj) => {
       return {
@@ -930,7 +929,7 @@ const Part3 = (props) => {
             <div style={{ padding: "3rem" }}></div>
           </Grid>
           <Navigation
-            showBack={showBack}
+            showBack={false}
             showNext={allValidated}
             nextHandler={nextHandler}
             // backHandler={backHandler}

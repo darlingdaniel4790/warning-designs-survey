@@ -282,7 +282,7 @@ const SectionA = (props) => {
             <div style={{ padding: "3rem" }}></div>
           </Grid>
           <Navigation
-            showBack={true}
+            showBack={false}
             showNext={validated}
             nextHandler={nextHandler}
             backHandler={backHandler}
