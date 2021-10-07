@@ -14,6 +14,8 @@ import scarcityImage from "../../assets/scarcity.png";
 const Summary = () => {
   const router = useRouter();
   const context = useContext(Context);
+  context.setCurrentSection(2);
+
   const [responses, setResponses] = useState();
   const [chosenMessage, setChosenMessage] = useState("");
   const [showPage, setShowPage] = useState(false);

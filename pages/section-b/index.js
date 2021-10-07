@@ -21,6 +21,7 @@ const SectionB = (props) => {
   const router = useRouter();
   const [showPage, setShowPage] = useState(false);
   const context = useContext(Context);
+  context.setCurrentSection(3);
 
   useEffect(() => {
     // redirect if no access

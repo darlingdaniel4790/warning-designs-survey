@@ -5,6 +5,8 @@ import { questions as sectionCQuestions } from "../pages/section-c";
 import placeholder from "../assets/placeholder.png";
 
 const Context = React.createContext({
+  currentSection: 0,
+  setCurrentSection: () => {},
   responses: {
     sectionA: [
       {
@@ -65,6 +67,7 @@ const Context = React.createContext({
 
 export const ContextProvider = (props) => {
   // states here
+  const [currentSection, setCurrentSection] = useState(0);
   const [access, setAccess] = useState({
     sectionA: false,
     summary: false,
@@ -179,6 +182,8 @@ export const ContextProvider = (props) => {
         setQuestions: setQuestions,
         access: access,
         setAccess: setAccess,
+        currentSection: currentSection,
+        setCurrentSection: setCurrentSection,
       }}
     >
       {props.children}

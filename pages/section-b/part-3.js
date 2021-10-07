@@ -39,7 +39,7 @@ const Part3 = (props) => {
   const router = useRouter();
   const [showPage, setShowPage] = useState(false);
   const context = useContext(Context);
-  // console.log(context.responses.sectionB[2].responses);
+  context.setCurrentSection(6);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
   const [validated, setValidated] = useState([false]);

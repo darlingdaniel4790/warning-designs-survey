@@ -10,8 +10,8 @@ const End = () => {
   const router = useRouter();
   const [showPage, setShowPage] = useState(false);
   const context = useContext(Context);
+  context.setCurrentSection(8);
   const [done, setDone] = useState(false);
-  console.log(context.responses);
   const uploadToFirestore = () => {
     let response = JSON.stringify(context.responses);
     firestoreDB

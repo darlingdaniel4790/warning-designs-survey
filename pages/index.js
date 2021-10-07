@@ -8,6 +8,7 @@ import { useContext } from "react";
 export default function Home() {
   const router = useRouter();
   const context = useContext(Context);
+  context.setCurrentSection(0);
 
   const nextHandler = () => {
     context.setAccess((prev) => {

@@ -125,6 +125,8 @@ export const questions = [
 
 const SectionA = (props) => {
   const context = useContext(Context);
+  context.setCurrentSection(1);
+
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
   const router = useRouter();
   const theme = useTheme();

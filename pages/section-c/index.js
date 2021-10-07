@@ -57,7 +57,7 @@ const SectionC = () => {
   const router = useRouter();
   const [showPage, setShowPage] = useState(false);
   const context = useContext(Context);
-  console.log(context.responses.sectionB);
+  context.setCurrentSection(7);
   const [validated, setValidated] = useState(false);
 
   useEffect(() => {

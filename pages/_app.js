@@ -1,9 +1,10 @@
 import { Grid } from "@material-ui/core";
 import { ContextProvider } from "../store";
 import "../styles/globals.css";
+import classes from "../styles/globals.module.css";
 import firebase from "firebase/app";
 import "firebase/firestore";
-
+import LinearDeterminate from "../components/LinearDeterminate";
 const firebaseConfig = {
   apiKey: "AIzaSyDgEt4kAWQHeKt5rxFkJt9PDvSr1VRsEKE",
   authDomain: "warning-designs.firebaseapp.com",
@@ -23,12 +24,14 @@ export const firestoreDB = firebase.firestore();
 function MyApp({ Component, pageProps }) {
   return (
     <ContextProvider>
+      <LinearDeterminate />
       <Grid
         container
         spacing={2}
         direction="column"
         alignItems="center"
         justifyContent="center"
+        className={classes.main}
       >
         <Component {...pageProps} />
       </Grid>
