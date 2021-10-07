@@ -183,7 +183,6 @@ const Part1 = (props) => {
     validated.every((item) => item === true) &&
     !allValidated
   ) {
-    console.log("all questions answered");
     setAllValidated(true);
   } else if (
     validated.length === numOfQuestions &&
