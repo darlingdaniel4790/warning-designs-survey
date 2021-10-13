@@ -56,8 +56,16 @@ const SectionB = (props) => {
             <Grid container direction="column" spacing={3}>
               <Grid item>
                 <Typography variant="h4">
-                  The Image you will find require you carefully observe, read,
-                  and analyse.
+                Section B
+Here, you will be asked to assume a specific role e.g., manager, secretary, or company representative. We are interested on the advice, decision, and inferences you will take in each situation. Very simple and direct questions follow immediately. Please be careful to read the text on the picture image carefully
+
+Ms. white is a secretary of a popular logistic company (name not shown due to privacy). She was recently deployed to the Cargo dispatch unit with three stage process for each request order received. (For each request order to be completed, the following activities should be completed)
+1.)	Activation of new sale representative accounts 
+2.)	Assigning of new orders to staff for subsequent dispatch
+3.)	Processing of payments for orders received
+She clicked on request order A54 received on the 15th of October and the following picture image (see below) popped up. 
+Please kindly read the following question and select the best option you will take if you were Ms White.  
+
                 </Typography>
               </Grid>
             </Grid>
