@@ -162,11 +162,11 @@ const SectionA = (props) => {
         summary: true,
       };
     });
-    router.push("/summary");
+    router.replace("/summary");
   };
 
   const backHandler = () => {
-    router.push("/");
+    router.replace("/");
   };
 
   // console.log(context);
@@ -284,7 +284,7 @@ const SectionA = (props) => {
             <div style={{ padding: "3rem" }}></div>
           </Grid>
           <Navigation
-            showBack={false}
+            showBack={true}
             showNext={validated}
             nextHandler={nextHandler}
             backHandler={backHandler}
