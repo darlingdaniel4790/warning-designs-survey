@@ -739,31 +739,31 @@ const Part2 = (props) => {
                         <FormControlLabel
                           value="1"
                           control={<Radio />}
-                          label="Strongly Disagree"
+                          label="0%"
                           labelPlacement={matches ? "bottom" : "end"}
                         />
                         <FormControlLabel
                           value="2"
                           control={<Radio />}
-                          label="Disagree"
+                          label="25%"
                           labelPlacement={matches ? "bottom" : "end"}
                         />
                         <FormControlLabel
                           value="3"
                           control={<Radio />}
-                          label="Not Sure"
+                          label="50%"
                           labelPlacement={matches ? "bottom" : "end"}
                         />
                         <FormControlLabel
                           value="4"
                           control={<Radio />}
-                          label="Agree"
+                          label="75%"
                           labelPlacement={matches ? "bottom" : "end"}
                         />
                         <FormControlLabel
                           value="5"
                           control={<Radio />}
-                          label="Strongly Agree"
+                          label="100%"
                           labelPlacement={matches ? "bottom" : "end"}
                         />
                       </Grid>
