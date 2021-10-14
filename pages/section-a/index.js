@@ -57,7 +57,7 @@ export const questions = [
   {
     key: "7",
     principle: "authority",
-    question: "I always follow advice from my general practitioner.",
+    question: "I always follow the advice provided by a general practitioner (e.g., my doctor).",
   },
   {
     key: "8",
