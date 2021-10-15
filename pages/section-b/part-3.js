@@ -429,11 +429,8 @@ const Part3 = (props) => {
               <Grid item>
                 <Paper elevation={5} className={classes.questions}>
                   <Typography variant="h4">
-                    Ms. white is a new secretary of a popular logistic company
-                    (name not shown due to privacy) she is presently activating
-                    user accounts and assigning new orders. She clicked orders
-                    A54 received on 8/07/2021 and it returned the following
-                    message.
+                  Processing of payments for orders received
+  
                   </Typography>
                 </Paper>
               </Grid>
