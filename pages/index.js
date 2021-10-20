@@ -44,10 +44,6 @@ export default function Home() {
             an employee. The study aims at analyzing user perception on certain
             scenario. <br />
             <br />
-            There are three (3) short sections A, B, and C. In all sections you
-            will be expected to choose an option or provide short answers.{" "}
-            <br />
-            <br />
             This is not an examination. Your participation in this
             research is voluntary. 
             <br />
