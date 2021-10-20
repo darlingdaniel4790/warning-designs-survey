@@ -48,42 +48,19 @@ export default function Home() {
             will be expected to choose an option or provide short answers.{" "}
             <br />
             <br />
-            Section A (getting to know you) <br />
-            In this section, we save you the time of introducing yourself and
-            ask you simple getting to know you chats. <br />
+            This is not an examination. Your participation in this
+            research is voluntary. 
             <br />
-            Section B1 (main sections) <br />
-            Here, you will be asked to assume a specific role e.g., manager,
-            secretary, or company representative. We are interested on the
-            advice, decision, and inferences you will take in each situation.
-            Very simple and direct questions follow immediately. Please be
-            careful to read the text on the picture image carefully. <br />
-            <br />
-            Section B2 is similar to section B1 but will also require that you
-            observe the picture images carefully. <br />
-            <br />
-            Section B3 is similar to section B2 but will also require that you
-            observe the picture images carefully.
-            <br />
-            <br />
-            Section C Demographics <br />
-            Final notes This is not an examination. Your participation in this
-            research is voluntary. <br />
             <br />
             Note: At some point you may notice similar question. Don’t be
             disturbed, you are still on track.
+            
           </Typography>
           <br />
           <br />
           <br />
           <Typography variant="h5">
-            {/* This is not an examination.
-            <br />
-            <br />
-            The online survey should take you around [10 minutes].
-            <br />
-            <br />
-            Your participation in this research is voluntary. */}
+            
           </Typography>
         </Grid>
       </Grid>
