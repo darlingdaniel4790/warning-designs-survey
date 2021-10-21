@@ -63,8 +63,6 @@ const Summary = () => {
     authorityImage6,
     authorityImage7,
   ];
-  console.log([Math.floor(Math.random() * 7)]);
-  console.log(authorityImage[Math.floor(Math.random() * 7)]);
   const commitmentImage = [
     commitmentImage1,
     commitmentImage2,

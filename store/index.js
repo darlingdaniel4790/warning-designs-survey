@@ -70,7 +70,7 @@ export const ContextProvider = (props) => {
   const [currentSection, setCurrentSection] = useState(0);
   const [access, setAccess] = useState({
     sectionA: false,
-    summary: true,
+    summary: false,
     sectionB: false,
     sectionB1: false,
     sectionB2: false,
