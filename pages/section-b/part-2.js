@@ -429,11 +429,8 @@ const Part2 = (props) => {
               <Grid item>
                 <Paper elevation={5} className={classes.questions}>
                   <Typography variant="h4">
-                    Ms. white is a new secretary of a popular logistic company
-                    (name not shown due to privacy) she is presently activating
-                    user accounts and assigning new orders. She clicked orders
-                    A54 received on 8/07/2021 and it returned the following
-                    message.
+                  Assigning of new orders to staff for subsequent dispatch
+                  
                   </Typography>
                 </Paper>
               </Grid>
@@ -739,31 +736,31 @@ const Part2 = (props) => {
                         <FormControlLabel
                           value="1"
                           control={<Radio />}
-                          label="Strongly Disagree"
+                          label="0%"
                           labelPlacement={matches ? "bottom" : "end"}
                         />
                         <FormControlLabel
                           value="2"
                           control={<Radio />}
-                          label="Disagree"
+                          label="25%"
                           labelPlacement={matches ? "bottom" : "end"}
                         />
                         <FormControlLabel
                           value="3"
                           control={<Radio />}
-                          label="Not Sure"
+                          label="50%"
                           labelPlacement={matches ? "bottom" : "end"}
                         />
                         <FormControlLabel
                           value="4"
                           control={<Radio />}
-                          label="Agree"
+                          label="75%"
                           labelPlacement={matches ? "bottom" : "end"}
                         />
                         <FormControlLabel
                           value="5"
                           control={<Radio />}
-                          label="Strongly Agree"
+                          label="100%"
                           labelPlacement={matches ? "bottom" : "end"}
                         />
                       </Grid>

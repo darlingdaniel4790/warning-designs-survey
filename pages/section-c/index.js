@@ -31,7 +31,7 @@ export const questions = [
   },
   {
     key: "3",
-    question: "What is your current major?",
+    question: "What is your current major disciple (e.g., computer science, medicine, Banking etc?",
   },
   {
     key: "4",
