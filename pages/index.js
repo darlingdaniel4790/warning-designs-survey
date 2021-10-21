@@ -66,9 +66,12 @@ export default function Home() {
             observe the picture images carefully.
             <br />
             <br />
-            Section C Demographics <br />
-            Final notes This is not an examination. Your participation in this
-            research is voluntary. <br />
+            Section C <br />
+            Demographics <br />
+            <br />
+            Final notes <br />
+            This is not an examination. Your participation in this research is
+            voluntary. <br />
             <br />
             Note: At some point you may notice similar question. Don’t be
             disturbed, you are still on track.
