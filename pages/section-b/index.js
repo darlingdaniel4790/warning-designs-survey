@@ -56,13 +56,15 @@ const SectionB = (props) => {
             <Grid container direction="column" spacing={3}>
               <Grid item>
                 <Typography variant="h4">
-              Here, you will be asked to assume a specific role e.g., manager, secretary, or company representative. We are interested on the advice, decision, and inferences you will take in each situation. Very simple and direct questions follow immediately. Please be careful to read the text on the picture image carefully
+                Here, you assume a specific role at some point. We are interested on the advice, decision, and inferences you will take in each situation. 
+                Please be careful to read the text on the picture image carefully.
 
-              <br/><br/>Ms. white is a secretary of a popular logistic company (name not shown due to privacy). She was recently deployed to the Cargo dispatch unit with three stage process for each request order received. (For each request order to be completed, the following activities should be completed)
+              <br/><br/>Ms. White is a secretary of a popular logistic company (XYZ). She was recently deployed to the procurement unit as the team lead. Part of her Job functions includes: 
               <br/>1.)	Activation of new sale representative accounts 
               <br/>2.)	Assigning of new orders to staff for subsequent dispatch
               <br/>3.)	Processing of payments for orders received
-<br/><br/>She clicked on request order A54 received on the 15th of October and the following picture image (see below) popped up. 
+<br/><br/>Orders A54 – A75, are outstanding and needs urgent attention
+  <br/>/She clicked on request order A54 received on the 25th of October and the following picture image (see below) popped up. 
 <br/><br/>Please kindly read the following question and select the best option you will take if you were Ms White.  
 
                 </Typography>
