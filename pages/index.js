@@ -39,20 +39,17 @@ export default function Home() {
             We are conducting a short survey on how people take certain decisions during online activities. <br />
             The online survey should take you maximum [15 minutes]. You will at a certain point assume some roles e.g., secretary, sales representative, or an employee <br />
             <br />
-            This is not an examination. Your participation in this
-            research is voluntary. 
+            This is not an examination. Your participation in this research is
+            voluntary.
             <br />
             <br />
             Note: At some point you may notice similar question. Do not get
             disturbed, you are still on track.
-            
           </Typography>
           <br />
           <br />
           <br />
-          <Typography variant="h5">
-            
-          </Typography>
+          <Typography variant="h5"></Typography>
         </Grid>
       </Grid>
       <Navigation showBack={false} showNext={true} nextHandler={nextHandler} />

@@ -4,14 +4,111 @@ import { useContext, useEffect, useState } from "react";
 import Navigation from "../../components/Navigation";
 import Context from "../../store";
 import Head from "next/head";
-import authorityImage from "../../assets/authority.png";
-import commitmentImage from "../../assets/commitment.png";
-import consensusImage from "../../assets/consensus.png";
-import likingImage from "../../assets/liking.png";
-import reciprocityImage from "../../assets/reciprocity.png";
-import scarcityImage from "../../assets/scarcity.png";
+
+import authorityImage1 from "../../assets/authority/Age_authority.png";
+import authorityImage2 from "../../assets/authority/Alexa_authority.png";
+import authorityImage3 from "../../assets/authority/Archive_authority.png";
+import authorityImage4 from "../../assets/authority/Domain_authority.png";
+import authorityImage5 from "../../assets/authority/HTTPs_authority.png";
+import authorityImage6 from "../../assets/authority/Server_authority.png";
+import authorityImage7 from "../../assets/authority/URL_authority.png";
+
+import commitmentImage1 from "../../assets/commitment/Age_commitment.png";
+import commitmentImage2 from "../../assets/commitment/Alexa_commitment.png";
+import commitmentImage3 from "../../assets/commitment/Archive_commitment.png";
+import commitmentImage4 from "../../assets/commitment/Domain_commitment.png";
+import commitmentImage5 from "../../assets/commitment/HTTPs_commitment.png";
+import commitmentImage6 from "../../assets/commitment/Server_commitment.png";
+import commitmentImage7 from "../../assets/commitment/URL_commitment.png";
+
+import consensusImage1 from "../../assets/consensus/Age_consensus.png";
+import consensusImage2 from "../../assets/consensus/Alexa_consensus.png";
+import consensusImage3 from "../../assets/consensus/Archive_consensus.png";
+import consensusImage4 from "../../assets/consensus/Domain_consensus.png";
+import consensusImage5 from "../../assets/consensus/HTTPs_consensus.png";
+import consensusImage6 from "../../assets/consensus/Server_consensus.png";
+import consensusImage7 from "../../assets/consensus/URL_consensus.png";
+
+import likingImage1 from "../../assets/liking/Age_liking.png";
+import likingImage2 from "../../assets/liking/Alexa_liking.png";
+import likingImage3 from "../../assets/liking/Archive_liking.png";
+import likingImage4 from "../../assets/liking/Domain_liking.png";
+import likingImage5 from "../../assets/liking/HTTPs_liking.png";
+import likingImage6 from "../../assets/liking/Server_liking.png";
+import likingImage7 from "../../assets/liking/URL_liking.png";
+
+import reciprocityImage1 from "../../assets/reciprocity/Age_reciprocity.png";
+import reciprocityImage2 from "../../assets/reciprocity/Alexa_reciprocity.png";
+import reciprocityImage3 from "../../assets/reciprocity/Archive_reciprocity.png";
+import reciprocityImage4 from "../../assets/reciprocity/Domain_reciprocity.png";
+import reciprocityImage5 from "../../assets/reciprocity/HTTPs_reciprocity.png";
+import reciprocityImage6 from "../../assets/reciprocity/Server_reciprocity.png";
+import reciprocityImage7 from "../../assets/reciprocity/URL_reciprocity.png";
+
+import scarcityImage1 from "../../assets/scarcity/Age_scarcity.png";
+import scarcityImage2 from "../../assets/scarcity/Alexa_scarcity.png";
+import scarcityImage3 from "../../assets/scarcity/Archive_scarcity.png";
+import scarcityImage4 from "../../assets/scarcity/Domain_scarcity.png";
+import scarcityImage5 from "../../assets/scarcity/HTTPs_scarcity.png";
+import scarcityImage6 from "../../assets/scarcity/Server_scarcity.png";
+import scarcityImage7 from "../../assets/scarcity/URL_scarcity.png";
 
 const Summary = () => {
+  const authorityImage = [
+    authorityImage1,
+    authorityImage2,
+    authorityImage3,
+    authorityImage4,
+    authorityImage5,
+    authorityImage6,
+    authorityImage7,
+  ];
+  const commitmentImage = [
+    commitmentImage1,
+    commitmentImage2,
+    commitmentImage3,
+    commitmentImage4,
+    commitmentImage5,
+    commitmentImage6,
+    commitmentImage7,
+  ];
+  const consensusImage = [
+    consensusImage1,
+    consensusImage2,
+    consensusImage3,
+    consensusImage4,
+    consensusImage5,
+    consensusImage6,
+    consensusImage7,
+  ];
+  const likingImage = [
+    likingImage1,
+    likingImage2,
+    likingImage3,
+    likingImage4,
+    likingImage5,
+    likingImage6,
+    likingImage7,
+  ];
+  const reciprocityImage = [
+    reciprocityImage1,
+    reciprocityImage2,
+    reciprocityImage3,
+    reciprocityImage4,
+    reciprocityImage5,
+    reciprocityImage6,
+    reciprocityImage7,
+  ];
+  const scarcityImage = [
+    scarcityImage1,
+    scarcityImage2,
+    scarcityImage3,
+    scarcityImage4,
+    scarcityImage5,
+    scarcityImage6,
+    scarcityImage7,
+  ];
+
   const router = useRouter();
   const context = useContext(Context);
   context.setCurrentSection(2);
@@ -136,7 +233,8 @@ const Summary = () => {
         setChosenMessage("You will now proceed for the Reciprocity test.");
         context.setResponses((prev) => {
           prev.sectionB[0].principle = "reciprocity";
-          prev.sectionB[0].image = reciprocityImage;
+          prev.sectionB[0].image =
+            reciprocityImage[Math.floor(Math.random() * 7)];
           return prev;
         });
         break;
@@ -144,7 +242,7 @@ const Summary = () => {
         setChosenMessage("You will now proceed for the Scarcity test.");
         context.setResponses((prev) => {
           prev.sectionB[0].principle = "scarcity";
-          prev.sectionB[0].image = scarcityImage;
+          prev.sectionB[0].image = scarcityImage[Math.floor(Math.random() * 7)];
           return prev;
         });
 
@@ -153,7 +251,8 @@ const Summary = () => {
         setChosenMessage("You will now proceed for the Authority test.");
         context.setResponses((prev) => {
           prev.sectionB[0].principle = "authority";
-          prev.sectionB[0].image = authorityImage;
+          prev.sectionB[0].image =
+            authorityImage[Math.floor(Math.random() * 7)];
           return prev;
         });
 
@@ -162,7 +261,8 @@ const Summary = () => {
         setChosenMessage("You will now proceed for the Commitment test.");
         context.setResponses((prev) => {
           prev.sectionB[0].principle = "commitment";
-          prev.sectionB[0].image = commitmentImage;
+          prev.sectionB[0].image =
+            commitmentImage[Math.floor(Math.random() * 7)];
           return prev;
         });
 
@@ -171,7 +271,8 @@ const Summary = () => {
         setChosenMessage("You will now proceed for the Consensus test.");
         context.setResponses((prev) => {
           prev.sectionB[0].principle = "consensus";
-          prev.sectionB[0].image = consensusImage;
+          prev.sectionB[0].image =
+            consensusImage[Math.floor(Math.random() * 7)];
           return prev;
         });
 
@@ -180,7 +281,7 @@ const Summary = () => {
         setChosenMessage("You will now proceed for the Liking test.");
         context.setResponses((prev) => {
           prev.sectionB[0].principle = "liking";
-          prev.sectionB[0].image = likingImage;
+          prev.sectionB[0].image = likingImage[Math.floor(Math.random() * 7)];
           return prev;
         });
 
@@ -194,14 +295,15 @@ const Summary = () => {
       case 0:
         context.setResponses((prev) => {
           prev.sectionB[1].principle = "reciprocity";
-          prev.sectionB[1].image = reciprocityImage;
+          prev.sectionB[1].image =
+            reciprocityImage[Math.floor(Math.random() * 7)];
           return prev;
         });
         break;
       case 1:
         context.setResponses((prev) => {
           prev.sectionB[1].principle = "scarcity";
-          prev.sectionB[1].image = scarcityImage;
+          prev.sectionB[1].image = scarcityImage[Math.floor(Math.random() * 7)];
           return prev;
         });
 
@@ -209,7 +311,8 @@ const Summary = () => {
       case 2:
         context.setResponses((prev) => {
           prev.sectionB[1].principle = "authority";
-          prev.sectionB[1].image = authorityImage;
+          prev.sectionB[1].image =
+            authorityImage[Math.floor(Math.random() * 7)];
           return prev;
         });
 
@@ -217,7 +320,8 @@ const Summary = () => {
       case 3:
         context.setResponses((prev) => {
           prev.sectionB[1].principle = "commitment";
-          prev.sectionB[1].image = commitmentImage;
+          prev.sectionB[1].image =
+            commitmentImage[Math.floor(Math.random() * 7)];
           return prev;
         });
 
@@ -225,7 +329,8 @@ const Summary = () => {
       case 4:
         context.setResponses((prev) => {
           prev.sectionB[1].principle = "consensus";
-          prev.sectionB[1].image = consensusImage;
+          prev.sectionB[1].image =
+            consensusImage[Math.floor(Math.random() * 7)];
           return prev;
         });
 
@@ -233,7 +338,7 @@ const Summary = () => {
       case 5:
         context.setResponses((prev) => {
           prev.sectionB[1].principle = "liking";
-          prev.sectionB[1].image = likingImage;
+          prev.sectionB[1].image = likingImage[Math.floor(Math.random() * 7)];
           return prev;
         });
 
