@@ -33,22 +33,17 @@ export default function Home() {
           <br />
           <br />
           <Typography variant="h5">
-            As smart working becomes inevitable due to several reasons e.g.,
-            cost, covid etc. Users must be careful in making the right choice on
-            the internet especially with the upsurge of cybercriminals. <br />
+            As smart working becomes inevitable due to several reasons e.g., cost, covid etc. 
+            Users must then be careful as they work on the internet especially with the upsurge of cybercriminals. <br />
             <br />
-            We are conducting a short survey with users on how they take
-            critical decisions during online activities. The online survey
-            should take you maximum [15 minutes]. You will at a certain point be
-            asked to assume some roles e.g., secretary, sales representative, or
-            an employee. The study aims at analyzing user perception on certain
-            scenario. <br />
+            We are conducting a short survey on how people take certain decisions during online activities. <br />
+            The online survey should take you maximum [15 minutes]. You will at a certain point assume some roles e.g., secretary, sales representative, or an employee <br />
             <br />
             This is not an examination. Your participation in this
             research is voluntary. 
             <br />
             <br />
-            Note: At some point you may notice similar question. Don’t be
+            Note: At some point you may notice similar question. Do not get
             disturbed, you are still on track.
             
           </Typography>
