@@ -63,7 +63,7 @@ const SectionB = (props) => {
               <br/>1.)	Activation of new sale representative accounts 
               <br/>2.)	Assigning of new orders to staff for subsequent dispatch
               <br/>3.)	Processing of payments for orders received
-<br/><br/>Orders A54 – A75, are outstanding and needs urgent attention
+<br/><br/>Orders A54 – A75, are outstanding and needs urgent attention.
   <br/>/She clicked on request order A54 received on the 25th of October and the following picture image (see below) popped up. 
 <br/><br/>Please kindly read the following question and select the best option you will take if you were Ms White.  
 
