@@ -42,7 +42,19 @@ const Part3 = (props) => {
   context.setCurrentSection(6);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
-  const [validated, setValidated] = useState([false]);
+  const [validated, setValidated] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
   // console.log(validated);
   const [allValidated, setAllValidated] = useState(false);
   const [images] = useState(
@@ -429,8 +441,7 @@ const Part3 = (props) => {
               <Grid item>
                 <Paper elevation={5} className={classes.questions}>
                   <Typography variant="h4">
-                  Processing of payments for orders received
-  
+                    Processing of payments for orders received
                   </Typography>
                 </Paper>
               </Grid>
