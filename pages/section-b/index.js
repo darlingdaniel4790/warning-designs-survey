@@ -55,7 +55,7 @@ const SectionB = (props) => {
             <Grid container direction="column" spacing={3}>
               <Grid item>
                 <Typography variant="h4">
-                  Here, you assume a specific role - Ms White
+                  Here, you assume a specific role - Ms. White
                   <br />
                   <br />
                   Ms. White is a secretary of a popular logistic company (XYZ).
@@ -69,7 +69,7 @@ const SectionB = (props) => {
                   3.) Processing of payments for orders received
                   <br />
                   <br />
-                  Orders A54 – A75, are outstanding and needs urgent attention.
+                  Orders A54 – A75, are outstanding and need urgent attention.
                   <br />
                   She clicked on request order A54 received on the 25th of
                   October and the following picture image (see next) popped up.
