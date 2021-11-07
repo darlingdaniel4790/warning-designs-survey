@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }) {
       <LinearDeterminate />
       <Grid
         container
-        spacing={2}
+        // spacing={2}
         direction="column"
         alignItems="center"
         justifyContent="center"

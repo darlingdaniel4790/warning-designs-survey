@@ -1,0 +1,116 @@
+{
+  "sectionA": [
+    { "key": "1", "value": "3", "principle": "reciprocity" },
+    { "key": "2", "value": "2", "principle": "reciprocity" },
+    { "key": "3", "value": "2", "principle": "reciprocity" },
+    { "key": "4", "value": "3", "principle": "scarcity" },
+    { "key": "5", "value": "3", "principle": "scarcity" },
+    { "key": "6", "value": "1", "principle": "scarcity" },
+    { "key": "7", "value": "2", "principle": "authority" },
+    { "key": "8", "value": "2", "principle": "authority" },
+    { "key": "9", "value": "1", "principle": "authority" },
+    { "key": "10", "value": "2", "principle": "commitment" },
+    { "key": "11", "value": "4", "principle": "commitment" },
+    { "key": "12", "value": "3", "principle": "commitment" },
+    { "key": "13", "value": "4", "principle": "concensus" },
+    { "key": "14", "value": "4", "principle": "concensus" },
+    { "key": "15", "value": "2", "principle": "concensus" },
+    { "key": "16", "value": "3", "principle": "liking" },
+    { "key": "17", "value": "4", "principle": "liking" },
+    { "key": "18", "value": "4", "principle": "liking" }
+  ],
+  "sectionB": [
+    {
+      "key": "highest",
+      "image": {
+        "src": "/_next/static/image/assets/liking.c1f353c269b8a686cd8fe8d4e9b06b39.png",
+        "height": 596,
+        "width": 958,
+        "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAkElEQVR4nCWNQQrCQBRDk3bAWty0uFDoplsvoZewd+nBepmCzLivIzoWxdH/HTAQkkXCY+x74TCA1gIhEIAm/7MswdgdRbMM9FfkzhHGKJgkopJmvGw3GpsGWlcw44jMnoF0EBEs6jV4alt9lgVQr8DwAm8z+InA947qnXo87JWJl08euizI+aHwE92u00jDH7ghPQR5af2KAAAAAElFTkSuQmCC"
+      },
+      "principle": "liking",
+      "responses": [
+        "Partially",
+        [
+          "Others",
+          "Read it and close the window or go back from the window navigation"
+        ],
+        [
+          { "key": "1", "value": "4" },
+          { "key": "2", "value": "2" }
+        ],
+        ["To be careful while continuing to the website", ""],
+        "4",
+        "That I shouldn't continue on this website because of privacy and security failures",
+        "2",
+        "To avoid me privacy and security issues. However, the look and feel of the message don't seem really professional so I don't dare to click on anything. I prefer just to close the window.",
+        "5",
+        "I don't really trust the alert. I just want to close the window. I don't know if that's a real alert. But I feel the website is bad and I should leave.",
+        "3"
+      ]
+    },
+    {
+      "key": "lowest",
+      "image": {
+        "src": "/_next/static/image/assets/authority.fea28c40f78333dea8dd216565a754c4.png",
+        "height": 597,
+        "width": 960,
+        "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAjUlEQVR4nCWMUQqCUBREZ3yG4YfZTwtIXEj991eLcWMuJQLJViBWvCTreW9XGhhm4DDDb1UJ65psGmAYFH/RDKQp+DkdRZ0j+x6uvSliZzgiZJoT9GUpYZ1TVxmi/q70fgZUg3EIYFsU8rBDbjLg+QI7DyYLYOyQj9bf+51QhPH5AiwThb3T9tftARMcfkdJNR8fRJI9AAAAAElFTkSuQmCC"
+      },
+      "principle": "authority",
+      "responses": [
+        "Partially",
+        ["Others", "Close the window"],
+        [
+          { "key": "1", "value": "3" },
+          { "key": "2", "value": "2" }
+        ],
+        ["To be careful while continuing to the website", ""],
+        "4",
+        "I am arriving on a phishing website",
+        "2",
+        "To avoid me security and privacy issues",
+        "5",
+        "The red color, the icon and title already convince me that I shouldn't go further",
+        "3"
+      ]
+    },
+    {
+      "key": "baseline",
+      "image": {
+        "src": "/_next/static/image/assets/placeholder.77b8c5eec7dbb0f59ff432e8eb54c696.png",
+        "height": 594,
+        "width": 955,
+        "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAiElEQVR4nB2NMQ6CQBQF5+GqBQV6BgotTbwMl9Cec+lBjJ0txkITI8FYwJr9fpnkFW+aUaxr0/EAXYcMo2lw5BtRrCqzlFDf+xlM94fbTIQJWduiy3Zjn6IgDD3EaMznKASld8fsfELtemW8nkiYKYMwRdebvvsdLJYml15OXhsx3x9RlpDn/ACVzzVuqvrvcQAAAABJRU5ErkJggg=="
+      },
+      "responses": [
+        "Partially",
+        ["Others", "Close the window"],
+        [
+          { "key": "1", "value": "3" },
+          { "key": "2", "value": "2" }
+        ],
+        ["To be careful while continuing to the website", ""],
+        "4",
+        "I should avoid to continue on this website",
+        "2",
+        "To advice me on privacy and security issues. And tell me how to be more vigilant with the Chome's functionality ",
+        "4",
+        "Icon, red, title",
+        "3"
+      ]
+    }
+  ],
+  "sectionC": [
+    { "key": "1", "value": "25 - 29" },
+    { "key": "2", "value": "Female" },
+    { "key": "3", "value": "Researcher" },
+    { "key": "4", "value": "Master's Degree" },
+    { "key": "5", "value": [false, true, false, false] },
+    { "key": "6", "value": "8" },
+    {
+      "key": "7",
+      "value": "I think you should take into account the visual elements of the messages in your questions. Because they influence the responses. Not only the text guide the user but also the visual design of the message."
+    }
+  ]
+}
