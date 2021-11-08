@@ -33,9 +33,7 @@ export default function Home() {
           <br />
           <br />
           <Typography variant="h5">
-            As smart working becomes inevitable due to several reasons e.g. cost, covid etc. 
-            Users must then be careful as they work on the internet especially with the upsurge of cybercriminals. <br />
-            <br />
+            
             We are conducting a short survey on how people take certain decisions during online activities. <br />
             The online survey should take you a maximum [15 minutes]. You will at a certain point assume some roles e.g., secretary, sales representative, or an employee <br />
             <br />
