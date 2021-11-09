@@ -3,12 +3,31 @@ import { Grid, Typography } from "@material-ui/core";
 import Navigation from "../components/Navigation";
 import { useRouter } from "next/router";
 import Context from "../store";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 export default function Home() {
   const router = useRouter();
   const context = useContext(Context);
   context.setCurrentSection(0);
+
+  useEffect(() => {
+    if (
+      router.query.PROLIFIC_PID &&
+      router.query.STUDY_ID &&
+      router.query.SESSION_ID
+    ) {
+      context.setResponses((prev) => {
+        return {
+          ...prev,
+          ProlificId: router.query.PROLIFIC_PID,
+          StudyId: router.query.STUDY_ID,
+          SessionId: router.query.SESSION_ID,
+        };
+      });
+    }
+
+    return () => {};
+  }, []);
 
   const nextHandler = () => {
     context.setAccess((prev) => {

@@ -8,6 +8,9 @@ const Context = React.createContext({
   currentSection: 0,
   setCurrentSection: () => {},
   responses: {
+    ProlificId: "",
+    StudyId: "",
+    SessionId: "",
     sectionA: [
       {
         key: "",
@@ -15,6 +18,14 @@ const Context = React.createContext({
         principle: "",
       },
     ],
+    summary: {
+      reciprocity: 0,
+      scarcity: 0,
+      authority: 0,
+      commitment: 0,
+      consensus: 0,
+      liking: 0,
+    },
     sectionB: [
       {
         key: "",
@@ -80,6 +91,9 @@ export const ContextProvider = (props) => {
   });
   const [questions, setQuestions] = useState({});
   const [responses, setResponses] = useState({
+    ProlificId: "",
+    StudyId: "",
+    SessionId: "",
     sectionA: sectionAQuestions.map((question) => {
       return {
         key: question.key,
@@ -87,6 +101,14 @@ export const ContextProvider = (props) => {
         principle: "",
       };
     }),
+    summary: {
+      reciprocity: 0,
+      scarcity: 0,
+      authority: 0,
+      commitment: 0,
+      consensus: 0,
+      liking: 0,
+    },
     sectionB: [
       {
         key: "highest",

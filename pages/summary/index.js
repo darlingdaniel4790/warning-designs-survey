@@ -227,7 +227,17 @@ const Summary = () => {
       consensus: temp[4],
       liking: temp[5],
     });
-
+    context.setResponses((prev) => {
+      prev.summary = {
+        reciprocity: (temp[0][0] / 3).toFixed(1),
+        scarcity: (temp[1][0] / 3).toFixed(1),
+        authority: (temp[2][0] / 3).toFixed(1),
+        commitment: (temp[3][0] / 3).toFixed(1),
+        consensus: (temp[4][0] / 3).toFixed(1),
+        liking: (temp[5][0] / 3).toFixed(1),
+      };
+      return prev;
+    });
     switch (indexOfMaxValue) {
       case 0:
         setChosenMessage("You will now proceed for the Reciprocity test.");
