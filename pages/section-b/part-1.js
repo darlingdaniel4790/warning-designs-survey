@@ -20,7 +20,7 @@ import Context from "../../store";
 import classes from "../section-a/index.module.css";
 import Image from "next/image";
 
-export const numOfQuestions = 11;
+export const numOfQuestions = 12;
 export const step3Questions = [
   {
     key: "1",
@@ -43,6 +43,7 @@ const Part1 = (props) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
   const [validated, setValidated] = useState([
+    false,
     false,
     false,
     false,
@@ -297,6 +298,21 @@ const Part1 = (props) => {
     });
   };
 
+  const handleChangeQualityCheck = (e) => {
+    setValidated((prev) => {
+      prev[11] = true;
+      return prev;
+    });
+    context.setResponses((prev) => {
+      const newResponses = prev.sectionB;
+      newResponses[0].responses[11] = e.target.value;
+      return {
+        ...prev,
+        sectionB: newResponses,
+      };
+    });
+  };
+
   const handleChange5 = (e) => {
     if (e.target.value !== "" && !validated[5]) {
       setValidated((prev) => {
@@ -424,6 +440,7 @@ const Part1 = (props) => {
   const value8 = context.responses.sectionB[0].responses[8];
   const value9 = context.responses.sectionB[0].responses[9];
   const value10 = context.responses.sectionB[0].responses[10];
+  const qualityCheckValue = context.responses.sectionB[0].responses[11];
 
   return (
     <>
@@ -648,6 +665,60 @@ const Part1 = (props) => {
                       // placeholder="Your response here."
                       disabled={disabled3}
                     />
+                  </FormControl>
+                </Paper>
+              </Grid>
+
+                    {/* QUALITY CONTROL QUESTION */}
+                    <Grid item>
+                <Paper elevation={5} className={classes.questions}>
+                  <Typography variant="h5">
+                  This is a quality-check question, so please select the third option (OK).
+                  </Typography>
+                  <FormControl component="fieldset" fullWidth={true}>
+                    <RadioGroup
+                      // name={question.key}
+                      value={qualityCheckValue}
+                      onChange={handleChangeQualityCheck}
+                    >
+                      <Grid
+                        container
+                        className={classes.questionsRadios}
+                        direction={!matches ? "column" : "row"}
+                        alignContent={matches ? "center" : "flex-start"}
+                      >
+                        <FormControlLabel
+                                  value="1"
+                                  control={<Radio />}
+                                  label="Strongly Disagree"
+                                  labelPlacement={matches ? "bottom" : "end"}
+                                />
+                                <FormControlLabel
+                                  value="2"
+                                  control={<Radio />}
+                                  label="Disagree"
+                                  labelPlacement={matches ? "bottom" : "end"}
+                                />
+                                <FormControlLabel
+                                  value="3"
+                                  control={<Radio />}
+                                  label="OK"
+                                  labelPlacement={matches ? "bottom" : "end"}
+                                />
+                                <FormControlLabel
+                                  value="4"
+                                  control={<Radio />}
+                                  label="Agree"
+                                  labelPlacement={matches ? "bottom" : "end"}
+                                />
+                                <FormControlLabel
+                                  value="5"
+                                  control={<Radio />}
+                                  label="Strongly Agree"
+                                  labelPlacement={matches ? "bottom" : "end"}
+                                />
+                      </Grid>
+                    </RadioGroup>
                   </FormControl>
                 </Paper>
               </Grid>

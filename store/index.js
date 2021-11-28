@@ -8,6 +8,8 @@ const Context = React.createContext({
   currentSection: 0,
   setCurrentSection: () => {},
   responses: {
+    StartTime: "",
+    TotalTime: "",
     ProlificId: "",
     StudyId: "",
     SessionId: "",
@@ -41,6 +43,7 @@ const Context = React.createContext({
             },
           ],
           [],
+          "",
           "",
           "",
           "",
@@ -91,6 +94,8 @@ export const ContextProvider = (props) => {
   });
   const [questions, setQuestions] = useState({});
   const [responses, setResponses] = useState({
+    StartTime: "",
+    TotalTime: "",
     ProlificId: "",
     StudyId: "",
     SessionId: "",
@@ -131,6 +136,7 @@ export const ContextProvider = (props) => {
           "x",
           "",
           "x",
+          "x"
         ],
       },
       {
@@ -154,6 +160,7 @@ export const ContextProvider = (props) => {
           "x",
           "",
           "x",
+          "x"
         ],
       },
       {
@@ -176,6 +183,7 @@ export const ContextProvider = (props) => {
           "x",
           "",
           "x",
+          "x"
         ],
       },
     ],

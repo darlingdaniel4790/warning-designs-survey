@@ -44,6 +44,7 @@ const Admin = (props) => {
             "Total Survey Duration": "TBC",
 
             // SECTION A
+            "Quality Check A": response.sectionA[9].value,
             A1: response.sectionA[0].value,
             A2: response.sectionA[1].value,
             A3: response.sectionA[2].value,
@@ -53,7 +54,6 @@ const Admin = (props) => {
             A7: response.sectionA[6].value,
             A8: response.sectionA[7].value,
             A9: response.sectionA[8].value,
-            A10: response.sectionA[9].value,
             A11: response.sectionA[10].value,
             A12: response.sectionA[11].value,
             A13: response.sectionA[12].value,
@@ -62,6 +62,7 @@ const Admin = (props) => {
             A16: response.sectionA[15].value,
             A17: response.sectionA[16].value,
             A18: response.sectionA[17].value,
+            A19: response.sectionA[18] !== undefined && response.sectionA[18].value,
 
             // SUMMARY
             Reciprocity: "N/A",
@@ -79,6 +80,7 @@ const Admin = (props) => {
 
             // SECTION B
             // PATH A
+            "Quality Check B-1": response.sectionB[0].responses[11] !== undefined && response.sectionB[0].responses[11],
             "Path A": (response.sectionB[0].principle + "").toUpperCase(),
             "Path A-1": response.sectionB[0].responses[0],
             "Path A-2":
@@ -101,6 +103,7 @@ const Admin = (props) => {
             "Time Taken for Path A": "TBC",
 
             // PATH B
+            "Quality Check B-2": response.sectionB[1].responses[11] !== undefined && response.sectionB[1].responses[11],
             "Path B": (response.sectionB[1].principle + "").toUpperCase(),
             "Path B-1": response.sectionB[1].responses[0],
             "Path B-2":
@@ -123,6 +126,7 @@ const Admin = (props) => {
             "Time Taken for Path B": "TBC",
 
             // BASELINE
+            "Quality Check B-3": response.sectionB[2].responses[11] !== undefined && response.sectionB[2].responses[11],
             Baseline: "BASELINE",
             "Baseline-1": response.sectionB[2].responses[0],
             "Baseline-2":
