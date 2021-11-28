@@ -41,7 +41,7 @@ const Admin = (props) => {
             // SessionID: response.SessionID,
 
             Date: date,
-            "Total Survey Duration": "TBC",
+            "Total Survey Duration (in minutes)": response.TotalTime !== undefined && response.TotalTime,
 
             // SECTION A
             "Quality Check A": response.sectionA[9].value,
@@ -65,18 +65,18 @@ const Admin = (props) => {
             A19: response.sectionA[18] !== undefined && response.sectionA[18].value,
 
             // SUMMARY
-            Reciprocity: "N/A",
-            Scarcity: "N/A",
-            Authority: "N/A",
-            Commitment: "N/A",
-            Consensus: "N/A",
-            Liking: "N/A",
-            // Reciprocity: response.summary.reciprocity,
-            // Scarcity: response.summary.scarcity,
-            // Authority: response.summary.authority,
-            // Commitment: response.summary.commitment,
-            // Consensus: response.summary.consensus,
-            // Liking: response.summary.liking,
+            // Reciprocity: "N/A",
+            // Scarcity: "N/A",
+            // Authority: "N/A",
+            // Commitment: "N/A",
+            // Consensus: "N/A",
+            // Liking: "N/A",
+            Reciprocity: response.summary !== undefined && response.summary.reciprocity,
+            Scarcity: response.summary !== undefined && response.summary.scarcity,
+            Authority: response.summary !== undefined && response.summary.authority,
+            Commitment: response.summary !== undefined && response.summary.commitment,
+            Consensus: response.summary !== undefined && response.summary.consensus,
+            Liking: response.summary !== undefined && response.summary.liking,
 
             // SECTION B
             // PATH A

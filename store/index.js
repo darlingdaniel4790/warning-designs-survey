@@ -94,7 +94,7 @@ export const ContextProvider = (props) => {
   });
   const [questions, setQuestions] = useState({});
   const [responses, setResponses] = useState({
-    StartTime: "",
+    StartTime: new Date(),
     TotalTime: "",
     ProlificId: "",
     StudyId: "",

@@ -37,6 +37,13 @@ const End = () => {
     setShowPage(true);
     uploadToFirestore();
 
+    context.setResponses(prev=>{
+      return {
+        ...prev,
+        TotalTime: (new Date() - context.responses.StartTime)/1000/60
+      }
+    })
+
     return () => {};
   }, []);
 
