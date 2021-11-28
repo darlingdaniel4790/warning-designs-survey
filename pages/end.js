@@ -12,8 +12,10 @@ const End = () => {
   const context = useContext(Context);
   context.setCurrentSection(8);
   const [done, setDone] = useState(false);
+  const [uploading, setUploading] = useState(false);
   console.log(context.responses);
   const uploadToFirestore = () => {
+    setUploading(true)
     let response = JSON.stringify(context.responses);
     firestoreDB
       .collection("responses")
@@ -28,6 +30,12 @@ const End = () => {
       .catch((error) => {});
   };
 
+  useEffect(()=>{
+    if(context.responses.TotalTime !== "" && !uploading){
+      uploadToFirestore();
+    }
+  }, [uploading, context.responses.TotalTime])
+
   useEffect(() => {
     // redirect if no access
     if (!context.access.end) {
@@ -35,7 +43,6 @@ const End = () => {
       return;
     }
     setShowPage(true);
-    uploadToFirestore();
 
     context.setResponses(prev=>{
       return {

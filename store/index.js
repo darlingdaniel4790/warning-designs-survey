@@ -90,7 +90,7 @@ export const ContextProvider = (props) => {
     sectionB2: false,
     sectionB3: false,
     sectionC: false,
-    end: false,
+    end: true,
   });
   const [questions, setQuestions] = useState({});
   const [responses, setResponses] = useState({
