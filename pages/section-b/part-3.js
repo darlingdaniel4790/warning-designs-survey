@@ -31,7 +31,7 @@ export const step3Questions = [
     question: "I am not interested in such popup messages.",
   },
 ];
-
+const startTime = new Date();
 const Part3 = (props) => {
   const [disabled1, setDisabled1] = useState(true);
   const [disabled3, setDisabled3] = useState(true);
@@ -41,22 +41,8 @@ const Part3 = (props) => {
   const context = useContext(Context);
   const [current, setCurrent] = useState(() => {
     const selected = Math.floor(Math.random() * context.responses.Left.length);
-    console.log(selected);
     return context.responses.Left[selected];
   });
-  useEffect(() => {
-    context.setResponses((prev) => {
-      const newLeft = prev.Left;
-      if (newLeft.indexOf(current) > -1) {
-        newLeft.splice(newLeft.indexOf(current), 1);
-      }
-      return {
-        ...prev,
-        Left: newLeft,
-      };
-    });
-  }, []);
-  console.log(current, context.responses.Left);
   context.setCurrentSection(6);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
@@ -91,6 +77,16 @@ const Part3 = (props) => {
       return;
     }
     setShowPage(true);
+    context.setResponses((prev) => {
+      const newLeft = prev.Left;
+      if (newLeft.indexOf(current) > -1) {
+        newLeft.splice(newLeft.indexOf(current), 1);
+      }
+      return {
+        ...prev,
+        Left: newLeft,
+      };
+    });
 
     return () => {};
   }, []);
@@ -100,6 +96,12 @@ const Part3 = (props) => {
       return {
         ...prev,
         sectionC: true,
+      };
+    });
+    context.setResponses((prev) => {
+      return {
+        ...prev,
+        SectionB3Duration: ((new Date() - startTime) / 1000 / 60).toFixed(1),
       };
     });
     router.push("/section-c");

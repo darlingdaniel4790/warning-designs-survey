@@ -14,6 +14,9 @@ const Context = React.createContext({
     ProlificId: "",
     StudyId: "",
     SessionId: "",
+    SectionADuration: "",
+    SectionBDuration: "",
+    SectionCDuration: "",
     sectionA: [
       {
         key: "",
@@ -91,21 +94,26 @@ export const ContextProvider = (props) => {
     sectionB2: false,
     sectionB3: false,
     sectionC: false,
-    end: true,
+    end: false,
   });
   const [questions, setQuestions] = useState({});
   const [responses, setResponses] = useState({
-    Left: [0,1,2],
+    Left: [0, 1, 2],
     StartTime: new Date(),
     TotalTime: "",
     ProlificId: "",
     StudyId: "",
     SessionId: "",
+    SectionADuration: "",
+    SectionB1Duration: "",
+    SectionB2Duration: "",
+    SectionB3Duration: "",
+    SectionCDuration: "",
     sectionA: sectionAQuestions.map((question) => {
       return {
         key: question.key,
-        value: "4",
-        principle: "reciprocity",
+        value: "",
+        principle: "",
       };
     }),
     summary: {
@@ -138,7 +146,7 @@ export const ContextProvider = (props) => {
           "x",
           "",
           "x",
-          "x"
+          "x",
         ],
       },
       {
@@ -162,7 +170,7 @@ export const ContextProvider = (props) => {
           "x",
           "",
           "x",
-          "x"
+          "x",
         ],
       },
       {
@@ -185,7 +193,7 @@ export const ContextProvider = (props) => {
           "x",
           "",
           "x",
-          "x"
+          "x",
         ],
       },
     ],

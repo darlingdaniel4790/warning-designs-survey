@@ -41,10 +41,14 @@ const Admin = (props) => {
             // SessionID: response.SessionID,
 
             Date: date,
-            "Total Survey Duration (in minutes)": response.TotalTime !== undefined && response.TotalTime,
+            "Total Survey Duration (in minutes)":
+              response.TotalTime !== undefined && response.TotalTime,
 
             // SECTION A
             "Quality Check A": response.sectionA[9].value,
+            "Time Taken for Section A (in minutes)":
+              response.SectionADuration !== undefined &&
+              response.SectionADuration,
             A1: response.sectionA[0].value,
             A2: response.sectionA[1].value,
             A3: response.sectionA[2].value,
@@ -62,25 +66,31 @@ const Admin = (props) => {
             A16: response.sectionA[15].value,
             A17: response.sectionA[16].value,
             A18: response.sectionA[17].value,
-            A19: response.sectionA[18] !== undefined && response.sectionA[18].value,
+            A19:
+              response.sectionA[18] !== undefined &&
+              response.sectionA[18].value,
 
             // SUMMARY
-            // Reciprocity: "N/A",
-            // Scarcity: "N/A",
-            // Authority: "N/A",
-            // Commitment: "N/A",
-            // Consensus: "N/A",
-            // Liking: "N/A",
-            Reciprocity: response.summary !== undefined && response.summary.reciprocity,
-            Scarcity: response.summary !== undefined && response.summary.scarcity,
-            Authority: response.summary !== undefined && response.summary.authority,
-            Commitment: response.summary !== undefined && response.summary.commitment,
-            Consensus: response.summary !== undefined && response.summary.consensus,
+            Reciprocity:
+              response.summary !== undefined && response.summary.reciprocity,
+            Scarcity:
+              response.summary !== undefined && response.summary.scarcity,
+            Authority:
+              response.summary !== undefined && response.summary.authority,
+            Commitment:
+              response.summary !== undefined && response.summary.commitment,
+            Consensus:
+              response.summary !== undefined && response.summary.consensus,
             Liking: response.summary !== undefined && response.summary.liking,
 
             // SECTION B
             // PATH A
-            "Quality Check B-1": response.sectionB[0].responses[11] !== undefined && response.sectionB[0].responses[11],
+            "Quality Check B-1":
+              response.sectionB[0].responses[11] !== undefined &&
+              response.sectionB[0].responses[11],
+            "Time Taken for Path 1 (in minutes)":
+              response.SectionB1Duration !== undefined &&
+              response.SectionB1Duration,
             "Path A": (response.sectionB[0].principle + "").toUpperCase(),
             "Path A-1": response.sectionB[0].responses[0],
             "Path A-2":
@@ -100,10 +110,14 @@ const Admin = (props) => {
             "Path A-9": response.sectionB[0].responses[8],
             "Path A-10": response.sectionB[0].responses[9],
             "Path A-11": response.sectionB[0].responses[10],
-            "Time Taken for Path A": "TBC",
 
             // PATH B
-            "Quality Check B-2": response.sectionB[1].responses[11] !== undefined && response.sectionB[1].responses[11],
+            "Quality Check B-2":
+              response.sectionB[1].responses[11] !== undefined &&
+              response.sectionB[1].responses[11],
+            "Time Taken for Path 2 (in minutes)":
+              response.SectionB2Duration !== undefined &&
+              response.SectionB2Duration,
             "Path B": (response.sectionB[1].principle + "").toUpperCase(),
             "Path B-1": response.sectionB[1].responses[0],
             "Path B-2":
@@ -123,10 +137,14 @@ const Admin = (props) => {
             "Path B-9": response.sectionB[1].responses[8],
             "Path B-10": response.sectionB[1].responses[9],
             "Path B-11": response.sectionB[1].responses[10],
-            "Time Taken for Path B": "TBC",
 
             // BASELINE
-            "Quality Check B-3": response.sectionB[2].responses[11] !== undefined && response.sectionB[2].responses[11],
+            "Quality Check Baseline":
+              response.sectionB[2].responses[11] !== undefined &&
+              response.sectionB[2].responses[11],
+            "Time Taken for Baseline (in minutes)":
+              response.SectionB3Duration !== undefined &&
+              response.SectionB3Duration,
             Baseline: "BASELINE",
             "Baseline-1": response.sectionB[2].responses[0],
             "Baseline-2":
@@ -146,9 +164,11 @@ const Admin = (props) => {
             "Baseline-9": response.sectionB[2].responses[8],
             "Baseline-10": response.sectionB[2].responses[9],
             "Baseline-11": response.sectionB[2].responses[10],
-            "Time Taken for Baseline": "TBC",
 
             // SECTION C
+            "Time Taken for Section C":
+              response.SectionCDuration !== undefined &&
+              response.SectionCDuration,
             C1: response.sectionC[0].value,
             C2: response.sectionC[1].value,
             C3: response.sectionC[2].value,
@@ -156,7 +176,6 @@ const Admin = (props) => {
             C5: browserValue,
             C6: response.sectionC[5].value,
             C7: response.sectionC[6].value,
-            "Time Taken for Section C": "TBC",
           };
           objects.push(item);
         });

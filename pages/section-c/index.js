@@ -62,6 +62,8 @@ export const questions = [
   },
 ];
 
+const startTime = new Date();
+
 const SectionC = () => {
   const router = useRouter();
   const [showPage, setShowPage] = useState(false);
@@ -87,6 +89,13 @@ const SectionC = () => {
         end: true,
       };
     });
+    context.setResponses((prev) => {
+      return {
+        ...prev,
+        SectionCDuration: ((new Date() - startTime) / 1000 / 60).toFixed(1),
+      };
+    });
+
     router.push("/end");
   };
 

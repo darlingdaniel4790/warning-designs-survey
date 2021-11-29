@@ -132,6 +132,8 @@ export const questions = [
   },
 ];
 
+const startTime = new Date();
+
 const SectionA = (props) => {
   const context = useContext(Context);
   context.setCurrentSection(1);
@@ -169,6 +171,12 @@ const SectionA = (props) => {
       return {
         ...prev,
         summary: true,
+      };
+    });
+    context.setResponses((prev) => {
+      return {
+        ...prev,
+        SectionADuration: ((new Date() - startTime) / 1000 / 60).toFixed(1),
       };
     });
     router.replace("/summary");
