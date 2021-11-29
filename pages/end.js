@@ -47,7 +47,7 @@ const End = () => {
     context.setResponses(prev=>{
       return {
         ...prev,
-        TotalTime: (new Date() - context.responses.StartTime)/1000/60
+        TotalTime: ((new Date() - context.responses.StartTime)/1000/60).toFixed(1)
       }
     })
 

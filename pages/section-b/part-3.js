@@ -39,6 +39,24 @@ const Part3 = (props) => {
   const router = useRouter();
   const [showPage, setShowPage] = useState(false);
   const context = useContext(Context);
+  const [current, setCurrent] = useState(() => {
+    const selected = Math.floor(Math.random() * context.responses.Left.length);
+    console.log(selected);
+    return context.responses.Left[selected];
+  });
+  useEffect(() => {
+    context.setResponses((prev) => {
+      const newLeft = prev.Left;
+      if (newLeft.indexOf(current) > -1) {
+        newLeft.splice(newLeft.indexOf(current), 1);
+      }
+      return {
+        ...prev,
+        Left: newLeft,
+      };
+    });
+  }, []);
+  console.log(current, context.responses.Left);
   context.setCurrentSection(6);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
@@ -106,7 +124,7 @@ const Part3 = (props) => {
 
     context.setResponses((prev) => {
       const newResponses = prev.sectionB;
-      newResponses[2].responses[0] = e.target.value;
+      newResponses[current].responses[0] = e.target.value;
       return {
         ...prev,
         sectionB: newResponses,
@@ -131,7 +149,7 @@ const Part3 = (props) => {
 
       context.setResponses((prev) => {
         const newResponses = prev.sectionB;
-        newResponses[2].responses[1][1] = e.target.value;
+        newResponses[current].responses[1][1] = e.target.value;
         return {
           ...prev,
           sectionB: newResponses,
@@ -165,8 +183,8 @@ const Part3 = (props) => {
 
       context.setResponses((prev) => {
         const newResponses = prev.sectionB;
-        newResponses[2].responses[1][0] = e.target.value;
-        newResponses[2].responses[1][1] = "";
+        newResponses[current].responses[1][0] = e.target.value;
+        newResponses[current].responses[1][1] = "";
         return {
           ...prev,
           sectionB: newResponses,
@@ -177,12 +195,14 @@ const Part3 = (props) => {
 
   // check for radio questions validation
   if (!validated[2]) {
-    let control = context.responses.sectionB[2].responses[2].every((item) => {
-      if (item.value === "x") {
-        return false;
+    let control = context.responses.sectionB[current].responses[2].every(
+      (item) => {
+        if (item.value === "x") {
+          return false;
+        }
+        return true;
       }
-      return true;
-    });
+    );
     if (control) {
       setValidated((prev) => {
         prev[2] = true;
@@ -206,12 +226,12 @@ const Part3 = (props) => {
   }
 
   const handleChange2 = (e) => {
-    let indexToUpdate = context.responses.sectionB[2].responses[2].findIndex(
-      (response) => response.key === e.target.name
-    );
+    let indexToUpdate = context.responses.sectionB[
+      current
+    ].responses[2].findIndex((response) => response.key === e.target.name);
     context.setResponses((prev) => {
       const newResponses = prev.sectionB;
-      newResponses[2].responses[2][indexToUpdate] = {
+      newResponses[current].responses[2][indexToUpdate] = {
         key: e.target.name,
         value: e.target.value,
       };
@@ -239,7 +259,7 @@ const Part3 = (props) => {
 
       context.setResponses((prev) => {
         const newResponses = prev.sectionB;
-        newResponses[2].responses[3][1] = e.target.value;
+        newResponses[current].responses[3][1] = e.target.value;
         return {
           ...prev,
           sectionB: newResponses,
@@ -273,8 +293,8 @@ const Part3 = (props) => {
 
       context.setResponses((prev) => {
         const newResponses = prev.sectionB;
-        newResponses[2].responses[3][0] = e.target.value;
-        newResponses[2].responses[3][1] = "";
+        newResponses[current].responses[3][0] = e.target.value;
+        newResponses[current].responses[3][1] = "";
         return {
           ...prev,
           sectionB: newResponses,
@@ -290,7 +310,7 @@ const Part3 = (props) => {
     });
     context.setResponses((prev) => {
       const newResponses = prev.sectionB;
-      newResponses[2].responses[4] = e.target.value;
+      newResponses[current].responses[4] = e.target.value;
       return {
         ...prev,
         sectionB: newResponses,
@@ -305,7 +325,7 @@ const Part3 = (props) => {
     });
     context.setResponses((prev) => {
       const newResponses = prev.sectionB;
-      newResponses[2].responses[11] = e.target.value;
+      newResponses[current].responses[11] = e.target.value;
       return {
         ...prev,
         sectionB: newResponses,
@@ -327,7 +347,7 @@ const Part3 = (props) => {
     }
     context.setResponses((prev) => {
       const newResponses = prev.sectionB;
-      newResponses[2].responses[5] = e.target.value;
+      newResponses[current].responses[5] = e.target.value;
       return {
         ...prev,
         sectionB: newResponses,
@@ -342,7 +362,7 @@ const Part3 = (props) => {
     });
     context.setResponses((prev) => {
       const newResponses = prev.sectionB;
-      newResponses[2].responses[6] = e.target.value;
+      newResponses[current].responses[6] = e.target.value;
       return {
         ...prev,
         sectionB: newResponses,
@@ -364,7 +384,7 @@ const Part3 = (props) => {
     }
     context.setResponses((prev) => {
       const newResponses = prev.sectionB;
-      newResponses[2].responses[7] = e.target.value;
+      newResponses[current].responses[7] = e.target.value;
       return {
         ...prev,
         sectionB: newResponses,
@@ -379,7 +399,7 @@ const Part3 = (props) => {
     });
     context.setResponses((prev) => {
       const newResponses = prev.sectionB;
-      newResponses[2].responses[8] = e.target.value;
+      newResponses[current].responses[8] = e.target.value;
       return {
         ...prev,
         sectionB: newResponses,
@@ -401,7 +421,7 @@ const Part3 = (props) => {
     }
     context.setResponses((prev) => {
       const newResponses = prev.sectionB;
-      newResponses[2].responses[9] = e.target.value;
+      newResponses[current].responses[9] = e.target.value;
       return {
         ...prev,
         sectionB: newResponses,
@@ -416,7 +436,7 @@ const Part3 = (props) => {
     });
     context.setResponses((prev) => {
       const newResponses = prev.sectionB;
-      newResponses[2].responses[10] = e.target.value;
+      newResponses[current].responses[10] = e.target.value;
       return {
         ...prev,
         sectionB: newResponses,
@@ -425,22 +445,22 @@ const Part3 = (props) => {
   };
 
   // VALUES FOR ALL QUESTIONS
-  const value0 = context.responses.sectionB[2].responses[0];
-  const value1 = context.responses.sectionB[2].responses[1][0];
-  const textAreaValue1 = context.responses.sectionB[2].responses[1][1];
+  const value0 = context.responses.sectionB[current].responses[0];
+  const value1 = context.responses.sectionB[current].responses[1][0];
+  const textAreaValue1 = context.responses.sectionB[current].responses[1][1];
   textAreaValue1 && disabled1 && setDisabled1(false);
-  // const value2 = context.responses.sectionB[2].responses[0]; // not needed
-  const value3 = context.responses.sectionB[2].responses[3][0];
-  const textAreaValue3 = context.responses.sectionB[2].responses[3][1];
+  // const value2 = context.responses.sectionB[current].responses[0]; // not needed
+  const value3 = context.responses.sectionB[current].responses[3][0];
+  const textAreaValue3 = context.responses.sectionB[current].responses[3][1];
   textAreaValue3 && disabled3 && setDisabled3(false);
-  const value4 = context.responses.sectionB[2].responses[4];
-  const value5 = context.responses.sectionB[2].responses[5];
-  const value6 = context.responses.sectionB[2].responses[6];
-  const value7 = context.responses.sectionB[2].responses[7];
-  const value8 = context.responses.sectionB[2].responses[8];
-  const value9 = context.responses.sectionB[2].responses[9];
-  const value10 = context.responses.sectionB[2].responses[10];
-  const qualityCheckValue = context.responses.sectionB[2].responses[11];
+  const value4 = context.responses.sectionB[current].responses[4];
+  const value5 = context.responses.sectionB[current].responses[5];
+  const value6 = context.responses.sectionB[current].responses[6];
+  const value7 = context.responses.sectionB[current].responses[7];
+  const value8 = context.responses.sectionB[current].responses[8];
+  const value9 = context.responses.sectionB[current].responses[9];
+  const value10 = context.responses.sectionB[current].responses[10];
+  const qualityCheckValue = context.responses.sectionB[current].responses[11];
 
   return (
     <>
@@ -469,7 +489,10 @@ const Part3 = (props) => {
                 <Paper elevation={5} className={classes.questions}>
                   <Grid container direction="column" alignItems="center">
                     <Grid item style={{ margin: "15px 0" }}>
-                      <Image src={images[2].value} alt={images[2].key} />
+                      <Image
+                        src={images[current].value}
+                        alt={images[current].key}
+                      />
                     </Grid>
                   </Grid>
                 </Paper>
@@ -557,12 +580,11 @@ const Part3 = (props) => {
                   <br />
                   <Grid container direction="column" spacing={3}>
                     {step3Questions.map((question) => {
-                      let current =
-                        context.responses.sectionB[2].responses[2].find(
-                          (item) => {
-                            return item.key === question.key;
-                          }
-                        );
+                      let currentHere = context.responses.sectionB[
+                        current
+                      ].responses[2].find((item) => {
+                        return item.key === question.key;
+                      });
                       return (
                         <Grid
                           item
@@ -575,7 +597,7 @@ const Part3 = (props) => {
                           <FormControl component="fieldset" fullWidth={true}>
                             <RadioGroup
                               name={question.key}
-                              value={current.value}
+                              value={currentHere.value}
                               onChange={handleChange2}
                             >
                               <Grid
@@ -744,11 +766,12 @@ const Part3 = (props) => {
                 </Paper>
               </Grid>
 
-                    {/* QUALITY CONTROL QUESTION */}
-                    <Grid item>
+              {/* QUALITY CONTROL QUESTION */}
+              <Grid item>
                 <Paper elevation={5} className={classes.questions}>
                   <Typography variant="h5">
-                  This is a quality-check question, so please select the third option (OK).
+                    This is a quality-check question, so please select the third
+                    option (OK).
                   </Typography>
                   <FormControl component="fieldset" fullWidth={true}>
                     <RadioGroup
@@ -763,35 +786,35 @@ const Part3 = (props) => {
                         alignContent={matches ? "center" : "flex-start"}
                       >
                         <FormControlLabel
-                                  value="1"
-                                  control={<Radio />}
-                                  label="Strongly Disagree"
-                                  labelPlacement={matches ? "bottom" : "end"}
-                                />
-                                <FormControlLabel
-                                  value="2"
-                                  control={<Radio />}
-                                  label="Disagree"
-                                  labelPlacement={matches ? "bottom" : "end"}
-                                />
-                                <FormControlLabel
-                                  value="3"
-                                  control={<Radio />}
-                                  label="OK"
-                                  labelPlacement={matches ? "bottom" : "end"}
-                                />
-                                <FormControlLabel
-                                  value="4"
-                                  control={<Radio />}
-                                  label="Agree"
-                                  labelPlacement={matches ? "bottom" : "end"}
-                                />
-                                <FormControlLabel
-                                  value="5"
-                                  control={<Radio />}
-                                  label="Strongly Agree"
-                                  labelPlacement={matches ? "bottom" : "end"}
-                                />
+                          value="1"
+                          control={<Radio />}
+                          label="Strongly Disagree"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="2"
+                          control={<Radio />}
+                          label="Disagree"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="3"
+                          control={<Radio />}
+                          label="OK"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="4"
+                          control={<Radio />}
+                          label="Agree"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
+                        <FormControlLabel
+                          value="5"
+                          control={<Radio />}
+                          label="Strongly Agree"
+                          labelPlacement={matches ? "bottom" : "end"}
+                        />
                       </Grid>
                     </RadioGroup>
                   </FormControl>

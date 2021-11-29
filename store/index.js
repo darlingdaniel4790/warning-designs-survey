@@ -8,6 +8,7 @@ const Context = React.createContext({
   currentSection: 0,
   setCurrentSection: () => {},
   responses: {
+    Left: [],
     StartTime: "",
     TotalTime: "",
     ProlificId: "",
@@ -94,6 +95,7 @@ export const ContextProvider = (props) => {
   });
   const [questions, setQuestions] = useState({});
   const [responses, setResponses] = useState({
+    Left: [0,1,2],
     StartTime: new Date(),
     TotalTime: "",
     ProlificId: "",
@@ -102,8 +104,8 @@ export const ContextProvider = (props) => {
     sectionA: sectionAQuestions.map((question) => {
       return {
         key: question.key,
-        value: "x",
-        principle: "",
+        value: "4",
+        principle: "reciprocity",
       };
     }),
     summary: {
