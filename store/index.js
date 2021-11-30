@@ -8,6 +8,7 @@ const Context = React.createContext({
   currentSection: 0,
   setCurrentSection: () => {},
   responses: {
+    SelectedPhotos: "",
     Left: [],
     StartTime: "",
     TotalTime: "",
@@ -98,6 +99,7 @@ export const ContextProvider = (props) => {
   });
   const [questions, setQuestions] = useState({});
   const [responses, setResponses] = useState({
+    SelectedPhotos: "",
     Left: [0, 1, 2],
     StartTime: new Date(),
     TotalTime: "",

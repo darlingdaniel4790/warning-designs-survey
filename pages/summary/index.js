@@ -101,6 +101,12 @@ const Summary = () => {
 
     switch (selection) {
       case 0:
+        context.responses.setResponses((prev) => {
+          return {
+            ...prev,
+            SelectedPhotos: "Age",
+          };
+        });
         selection = [
           //age
           reciprocityImage1,
@@ -112,6 +118,12 @@ const Summary = () => {
         ];
         break;
       case 1:
+        context.responses.setResponses((prev) => {
+          return {
+            ...prev,
+            SelectedPhotos: "Alexa",
+          };
+        });
         selection = [
           //alexa
           reciprocityImage2,
@@ -123,6 +135,12 @@ const Summary = () => {
         ];
         break;
       case 2:
+        context.responses.setResponses((prev) => {
+          return {
+            ...prev,
+            SelectedPhotos: "Archive",
+          };
+        });
         selection = [
           //archive
           reciprocityImage3,
@@ -134,6 +152,12 @@ const Summary = () => {
         ];
         break;
       case 3:
+        context.responses.setResponses((prev) => {
+          return {
+            ...prev,
+            SelectedPhotos: "Domain",
+          };
+        });
         selection = [
           //domain
           reciprocityImage4,
@@ -145,6 +169,12 @@ const Summary = () => {
         ];
         break;
       case 4:
+        context.responses.setResponses((prev) => {
+          return {
+            ...prev,
+            SelectedPhotos: "HTTPs",
+          };
+        });
         selection = [
           //https
           reciprocityImage5,
@@ -156,6 +186,12 @@ const Summary = () => {
         ];
         break;
       case 5:
+        context.responses.setResponses((prev) => {
+          return {
+            ...prev,
+            SelectedPhotos: "Server",
+          };
+        });
         selection = [
           //server
           reciprocityImage6,
@@ -167,6 +203,12 @@ const Summary = () => {
         ];
         break;
       case 6:
+        context.responses.setResponses((prev) => {
+          return {
+            ...prev,
+            SelectedPhotos: "URL",
+          };
+        });
         selection = [
           //url
           reciprocityImage7,

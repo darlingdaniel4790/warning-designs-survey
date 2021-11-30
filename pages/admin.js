@@ -71,6 +71,8 @@ const Admin = (props) => {
               response.sectionA[18].value,
 
             // SUMMARY
+            SelectedPhotos:
+              response.SelectedPhotos !== undefined && response.SelectedPhotos,
             Reciprocity:
               response.summary !== undefined && response.summary.reciprocity,
             Scarcity:
