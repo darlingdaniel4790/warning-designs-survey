@@ -93,8 +93,9 @@ const Summary = () => {
 
   useEffect(() => {
     // redirect if no access
-    if (!context.access.summary) {
-      router.replace("/section-a");
+    // if (!context.access.summary) {
+    if (true) {
+      router.replace("/");
       return;
     }
     setShowPage(true);

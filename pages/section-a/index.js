@@ -170,7 +170,7 @@ const SectionA = (props) => {
     context.setAccess((prev) => {
       return {
         ...prev,
-        summary: true,
+        sectionB: true,
       };
     });
     context.setResponses((prev) => {
@@ -179,7 +179,7 @@ const SectionA = (props) => {
         SectionADuration: ((new Date() - startTime) / 1000 / 60).toFixed(1),
       };
     });
-    router.replace("/summary");
+    router.push("/section-b");
   };
 
   const backHandler = () => {
