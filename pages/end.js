@@ -32,7 +32,7 @@ const End = () => {
 
   useEffect(() => {
     if (context.responses.TotalTime !== "" && !uploading) {
-      //uploadToFirestore();
+      uploadToFirestore();
     }
   }, [uploading, context.responses.TotalTime]);
 
