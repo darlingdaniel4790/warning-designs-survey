@@ -62,14 +62,13 @@ export const questions = [
   },
 ];
 
-const startTime = new Date();
-
 const SectionC = () => {
   const router = useRouter();
   const [showPage, setShowPage] = useState(false);
   const context = useContext(Context);
   context.setCurrentSection(7);
   const [validated, setValidated] = useState(false);
+  const [startTime, setStartTime] = useState();
 
   useEffect(() => {
     // redirect if no access
@@ -78,7 +77,7 @@ const SectionC = () => {
       return;
     }
     setShowPage(true);
-
+    setStartTime(new Date());
     return () => {};
   }, []);
 
