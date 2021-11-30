@@ -101,7 +101,7 @@ const Summary = () => {
 
     switch (selection) {
       case 0:
-        context.responses.setResponses((prev) => {
+        context.setResponses((prev) => {
           return {
             ...prev,
             SelectedPhotos: "Age",
@@ -118,7 +118,7 @@ const Summary = () => {
         ];
         break;
       case 1:
-        context.responses.setResponses((prev) => {
+        context.setResponses((prev) => {
           return {
             ...prev,
             SelectedPhotos: "Alexa",
@@ -135,7 +135,7 @@ const Summary = () => {
         ];
         break;
       case 2:
-        context.responses.setResponses((prev) => {
+        context.setResponses((prev) => {
           return {
             ...prev,
             SelectedPhotos: "Archive",
@@ -152,7 +152,7 @@ const Summary = () => {
         ];
         break;
       case 3:
-        context.responses.setResponses((prev) => {
+        context.setResponses((prev) => {
           return {
             ...prev,
             SelectedPhotos: "Domain",
@@ -169,7 +169,7 @@ const Summary = () => {
         ];
         break;
       case 4:
-        context.responses.setResponses((prev) => {
+        context.setResponses((prev) => {
           return {
             ...prev,
             SelectedPhotos: "HTTPs",
@@ -186,7 +186,7 @@ const Summary = () => {
         ];
         break;
       case 5:
-        context.responses.setResponses((prev) => {
+        context.setResponses((prev) => {
           return {
             ...prev,
             SelectedPhotos: "Server",
@@ -203,7 +203,7 @@ const Summary = () => {
         ];
         break;
       case 6:
-        context.responses.setResponses((prev) => {
+        context.setResponses((prev) => {
           return {
             ...prev,
             SelectedPhotos: "URL",
