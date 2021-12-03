@@ -22,7 +22,15 @@ export const questions = [
   {
     key: "1",
     question: "Age group?",
-    options: ["18 - 24", "25 - 29", "30 - 34", "35+"],
+    options: [
+      "18 - 28",
+      "29 - 38",
+      "39 - 48",
+      "49 - 58",
+      "59 - 68",
+      "69 - 78",
+      "79 - 88",
+    ],
   },
   {
     key: "2",
@@ -31,7 +39,8 @@ export const questions = [
   },
   {
     key: "3",
-    question: "What is your current major disciple (e.g., computer science, medicine, Banking etc?",
+    question:
+      "What is your current major disciple (e.g., computer science, medicine, Banking etc?",
   },
   {
     key: "4",
@@ -59,6 +68,7 @@ const SectionC = () => {
   const context = useContext(Context);
   context.setCurrentSection(7);
   const [validated, setValidated] = useState(false);
+  const [startTime, setStartTime] = useState();
 
   useEffect(() => {
     // redirect if no access
@@ -67,7 +77,7 @@ const SectionC = () => {
       return;
     }
     setShowPage(true);
-
+    setStartTime(new Date());
     return () => {};
   }, []);
 
@@ -78,6 +88,13 @@ const SectionC = () => {
         end: true,
       };
     });
+    context.setResponses((prev) => {
+      return {
+        ...prev,
+        SectionCDuration: ((new Date() - startTime) / 1000 / 60).toFixed(1),
+      };
+    });
+
     router.push("/end");
   };
 

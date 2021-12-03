@@ -57,7 +57,8 @@ export const questions = [
   {
     key: "7",
     principle: "authority",
-    question: "I always follow the advice provided by a general practitioner (e.g., my doctor).",
+    question:
+      "I always follow the advice provided by a general practitioner (e.g., my doctor).",
   },
   {
     key: "8",
@@ -70,6 +71,14 @@ export const questions = [
     principle: "authority",
     question: "I am very inclined to listen to authority figures.",
   },
+
+  // QUALITY CONTROL QUESTION
+  {
+    key: "0",
+    principle: "none",
+    question: 'Please select "Never" for this question.',
+  },
+  //
 
   {
     key: "10",
@@ -123,6 +132,8 @@ export const questions = [
   },
 ];
 
+const startTime = new Date();
+
 const SectionA = (props) => {
   const context = useContext(Context);
   context.setCurrentSection(1);
@@ -159,10 +170,16 @@ const SectionA = (props) => {
     context.setAccess((prev) => {
       return {
         ...prev,
-        summary: true,
+        sectionB: true,
       };
     });
-    router.replace("/summary");
+    context.setResponses((prev) => {
+      return {
+        ...prev,
+        SectionADuration: ((new Date() - startTime) / 1000 / 60).toFixed(1),
+      };
+    });
+    router.push("/section-b");
   };
 
   const backHandler = () => {
@@ -257,7 +274,9 @@ const SectionA = (props) => {
                               <FormControlLabel
                                 value="3"
                                 control={<Radio />}
-                                label="Not Sure"
+                                label={
+                                  question.key === "0" ? "Never" : "Not Sure"
+                                }
                                 labelPlacement={matches ? "bottom" : "end"}
                               />
                               <FormControlLabel

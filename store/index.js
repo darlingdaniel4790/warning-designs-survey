@@ -8,9 +8,16 @@ const Context = React.createContext({
   currentSection: 0,
   setCurrentSection: () => {},
   responses: {
+    SelectedPhotos: "",
+    Left: [],
+    StartTime: "",
+    TotalTime: "",
     ProlificId: "",
     StudyId: "",
     SessionId: "",
+    SectionADuration: "",
+    SectionBDuration: "",
+    SectionCDuration: "",
     sectionA: [
       {
         key: "",
@@ -41,6 +48,7 @@ const Context = React.createContext({
             },
           ],
           [],
+          "",
           "",
           "",
           "",
@@ -91,13 +99,22 @@ export const ContextProvider = (props) => {
   });
   const [questions, setQuestions] = useState({});
   const [responses, setResponses] = useState({
+    SelectedPhotos: "",
+    Left: [0, 1, 2],
+    StartTime: new Date(),
+    TotalTime: "",
     ProlificId: "",
     StudyId: "",
     SessionId: "",
+    SectionADuration: "",
+    SectionB1Duration: "",
+    SectionB2Duration: "",
+    SectionB3Duration: "",
+    SectionCDuration: "",
     sectionA: sectionAQuestions.map((question) => {
       return {
         key: question.key,
-        value: "x",
+        value: "",
         principle: "",
       };
     }),
@@ -131,6 +148,7 @@ export const ContextProvider = (props) => {
           "x",
           "",
           "x",
+          "x",
         ],
       },
       {
@@ -154,6 +172,7 @@ export const ContextProvider = (props) => {
           "x",
           "",
           "x",
+          "x",
         ],
       },
       {
@@ -175,6 +194,7 @@ export const ContextProvider = (props) => {
           "",
           "x",
           "",
+          "x",
           "x",
         ],
       },
