@@ -58,21 +58,18 @@ const SectionB = (props) => {
                   Here, you assume a specific role - Ms. White
                   <br />
                   <br />
-                  Ms. White is a secretary of a popular logistic company (XYZ).
-                  She was recently deployed to the procurement unit as the team
-                  lead. Part of her Job functions includes:
+                  Most online platforms will require you to first sign up i.e., create an account before you would be able to use the application. .
+
                   <br />
-                  1.) Activation of new sale representative accounts
+                  Once the account registration is started, an email is sent asking you to click on a link within the email to complete your registration. 
                   <br />
-                  2.) Assigning of new orders to staff for subsequent dispatch
+ 
                   <br />
-                  3.) Processing of payments for orders received
+                                    <br />
                   <br />
+                  Please click the NEXT TAB TO PROCEED
                   <br />
-                  Orders A54 – A75, are outstanding and need urgent attention.
-                  <br />
-                  She clicked on request order A54 received on the 25th of
-                  October and the following picture image (see next) popped up.
+                  
                   <br />
                   <br />
                 </Typography>
