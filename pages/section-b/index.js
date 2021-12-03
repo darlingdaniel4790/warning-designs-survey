@@ -56,7 +56,7 @@ const SectionB = (props) => {
             <Grid container direction="column" spacing={3}>
               <Grid item>
                 <Typography variant="h4">
-                  Here, you assume a specific role. 
+                  Please read carefully paying attention to details. 
                   <br />
                   <br />
                   Most online platforms will require you to first sign up i.e., create an account before you would be able to use the application. 
