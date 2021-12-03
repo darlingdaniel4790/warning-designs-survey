@@ -56,10 +56,10 @@ const SectionB = (props) => {
             <Grid container direction="column" spacing={3}>
               <Grid item>
                 <Typography variant="h4">
-                  Here, you assume a specific role - Ms. White
+                  Here, you assume a specific role. 
                   <br />
                   <br />
-                  Most online platforms will require you to first sign up i.e., create an account before you would be able to use the application. .
+                  Most online platforms will require you to first sign up i.e., create an account before you would be able to use the application. 
 
                   <br />
                   Once the account registration is started, an email is sent asking you to click on a link within the email to complete your registration. 
