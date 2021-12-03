@@ -480,8 +480,8 @@ const Part3 = (props) => {
               <Grid item>
                 <Paper elevation={5} className={classes.questions}>
                   <Typography variant="h4">
-                    Orders A62: Processing of payments for orders received on
-                    23rd October 2021
+                  IMAGINE YOU CLICKED ON THE LINK AND THE FOLLOWING IMAGE (BELOW) POPPED UP 
+                    
                   </Typography>
                 </Paper>
               </Grid>
