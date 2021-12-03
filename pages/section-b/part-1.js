@@ -480,8 +480,8 @@ const Part1 = (props) => {
               <Grid item>
                 <Paper elevation={5} className={classes.questions}>
                   <Typography variant="h4">
-                    Orders A54: Processing of request orders for activation of
-                    Account profile on 25th October 2021.
+                  IMAGINE YOU CLICKED ON THE LINK AND THE FOLLOWING IMAGE (BELOW) POPPED UP 
+                
                   </Typography>
                 </Paper>
               </Grid>
