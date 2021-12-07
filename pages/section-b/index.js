@@ -59,7 +59,8 @@ const SectionB = (props) => {
                   Please read carefully paying attention to details. 
                   <br />
                   <br />
-                  As a daily routine, once Mr. David arrives at the office, he looks through his calendar and emails checking for tasks, appointments, and deadlines slated for the day. <br/> <br/>
+                  As a daily routine, once Mr. David arrives at the office, he looks through his calendar and emails checking for tasks, appointments, and deadlines slated for the day. 
+                  <br/> <br/>
                  
                   On this particular morning, while looking through his Email, he gets this mail purportedly from his bank asking him to click on a link to update his account. 
                   <br />
