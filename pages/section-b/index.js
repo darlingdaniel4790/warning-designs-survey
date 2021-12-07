@@ -59,8 +59,8 @@ const SectionB = (props) => {
                   Please read carefully paying attention to details. 
                   <br />
                   <br />
-                  Most online platforms will require you to first sign up i.e., create an account before you would be able to use the application. 
-
+                  As a daily routine, once Mr. David arrives at the office, he looks through his calendar and emails checking for tasks, appointments, and deadlines slated for the day. 
+                  On this particular morning, while looking through his Email, he gets this mail purportedly from his bank asking him to click on a link to update his account. 
                   <br />
                   Once the account registration is started, an email is sent asking you to click on a link within the email to complete your registration. 
                   <br />
