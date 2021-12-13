@@ -64,7 +64,7 @@ const SectionB = (props) => {
                  
                   On this particular morning, while looking through his Email, he gets this mail purportedly from his bank asking him to click on a link to update his account. 
                   <br />
-                   
+                   Assume you are Mr. David
                   <br />
  
                   <br />
