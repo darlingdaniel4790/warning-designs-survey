@@ -577,7 +577,7 @@ const Part3 = (props) => {
                   <Typography variant="h5">
                     Please rate the following statements (all statements were
                     rated on a 5-point Likert scale, ranging from {`"`}Don{`'`}t
-                    agree{`"`} to {`"`}Totally agree{`"`}).
+                    agree{`"`} to {`"`}Strongly agree{`"`}).
                   </Typography>
                   <br />
                   <Grid container direction="column" spacing={3}>
