@@ -3,14 +3,14 @@ import { Grid, Typography } from "@material-ui/core";
 import Navigation from "../components/Navigation";
 import { useRouter } from "next/router";
 import Context from "../store";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
 export default function Home() {
   const router = useRouter();
   const context = useContext(Context);
   context.setCurrentSection(0);
 
-  useEffect(() => {
+  if (!context.responses.ProlificId) {
     console.log("logging id's");
     if (
       router.query.PROLIFIC_PID &&
@@ -26,13 +26,7 @@ export default function Home() {
         };
       });
     }
-    console.log(
-      router.query.PROLIFIC_PID,
-      router.query.STUDY_ID,
-      router.query.SESSION_ID
-    );
-    return () => {};
-  }, []);
+  }
 
   const nextHandler = () => {
     context.setAccess((prev) => {
