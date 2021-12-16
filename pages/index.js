@@ -11,6 +11,7 @@ export default function Home() {
   context.setCurrentSection(0);
 
   useEffect(() => {
+    console.log("logging id's");
     if (
       router.query.PROLIFIC_PID &&
       router.query.STUDY_ID &&
@@ -25,7 +26,11 @@ export default function Home() {
         };
       });
     }
-
+    console.log(
+      router.query.PROLIFIC_PID,
+      router.query.STUDY_ID,
+      router.query.SESSION_ID
+    );
     return () => {};
   }, []);
 
@@ -52,9 +57,11 @@ export default function Home() {
           <br />
           <br />
           <Typography variant="h5">
-            
-            We are conducting a short survey on how people take certain decisions during online activities. <br />
-            The online survey should take you a maximum [15 minutes]. You will at a certain point assume some roles e.g., a new user, an applicant, etc. <br />
+            We are conducting a short survey on how people take certain
+            decisions during online activities. <br />
+            The online survey should take you a maximum [15 minutes]. You will
+            at a certain point assume some roles e.g., a new user, an applicant,
+            etc. <br />
             <br />
             This is not an examination. Your participation in this research is
             voluntary.
