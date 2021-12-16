@@ -73,7 +73,7 @@ const End = () => {
           >
             <Typography align="center" variant="h4">
               Thank you for taking part in this survey. Click{" "}
-              <a href="">here</a> to return to Prolific.
+              <a href="https://app.prolific.co/submissions/complete?cc=1C584014">here</a> to return to Prolific.
             </Typography>
           </Grid>
         </>
