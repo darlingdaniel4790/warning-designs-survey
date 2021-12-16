@@ -33,12 +33,13 @@ const Admin = (props) => {
           item = {
             "Firebase ID": doc.id,
             // ID: data.id,
-            "Prolific ID": "TBR",
-            // ProlificID: response.ProlificID,
-            "Study ID": "TBR",
-            // StudyID: response.StudyID,
-            "Session ID": "TBR",
-            // SessionID: response.SessionID,
+            // "Prolific ID": "TBR",
+            ProlificID:
+              response.ProlificId !== undefined && response.ProlificId,
+            // "Study ID": "TBR",
+            StudyID: response.StudyId !== undefined && response.StudyId,
+            // "Session ID": "TBR",
+            SessionID: response.SessionId !== undefined && response.SessionId,
 
             Date: date,
             "Total Survey Duration (in minutes)":
