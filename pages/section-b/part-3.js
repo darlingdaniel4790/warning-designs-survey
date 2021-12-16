@@ -480,8 +480,8 @@ const Part3 = (props) => {
               <Grid item>
                 <Paper elevation={5} className={classes.questions}>
                   <Typography variant="h4">
-                  IMAGINE YOU CLICKED ON THE LINK AND THE FOLLOWING IMAGE (BELOW) POPPED UP 
-                    
+                    IMAGINE YOU CLICKED ON THE LINK AND THE FOLLOWING IMAGE
+                    (BELOW) POPPED UP
                   </Typography>
                 </Paper>
               </Grid>
@@ -576,8 +576,8 @@ const Part3 = (props) => {
                 <Paper elevation={5} className={classes.questions}>
                   <Typography variant="h5">
                     Please rate the following statements (all statements were
-                    rated on a 5-point Likert scale, ranging from {`"`}Don{`'`}t
-                    agree{`"`} to {`"`}Totally agree{`"`}).
+                    rated on a 5-point Likert scale, ranging from {`"`}Strongly
+                    Agree{`"`} to {`"`}Strongly Disagree{`"`}).
                   </Typography>
                   <br />
                   <Grid container direction="column" spacing={3}>
